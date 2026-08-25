@@ -1,0 +1,4835 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบแจ้งซ่อมและบริการหลังการขาย | Preem Group</title>
+  <meta name="description" content="ระบบแจ้งซ่อมและบริการหลังการขายออนไลน์ Preem Group สะดวก รวดเร็ว พร้อมทีมงานช่างมืออาชีพติดต่อกลับในเวลาทำการ 9.00-16.30 น.">
+  
+  <!-- Google Fonts: Prompt, Sarabun & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- LINE LIFF SDK 2.x -->
+  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <style>
+/* ==========================================================================
+   Preem Group - Service & Maintenance Care
+   Theme: Clean Liquid Glassmorphism (Core Navy / สีกรมหรูหรา)
+   ========================================================================== */
+
+:root {
+  /* Core Navy Palette (แกนหลักสีกรม) */
+  --navy-950: #060e1a;
+  --navy-900: #0b1a30;
+  --navy-850: #0f2342;
+  --navy-800: #132c54;
+  --navy-700: #1b3b6f;
+  --navy-600: #254d8c;
+  --navy-500: #3366b2;
+  --navy-400: #4d82d4;
+  --navy-300: #7ea8eb;
+  --navy-200: #bdd3f8;
+  --navy-100: #e2edfd;
+  --navy-50:  #f0f5fc;
+  --navy-25:  #f8fafd;
+
+  /* Primary Mapping */
+  --primary-900: var(--navy-900);
+  --primary-800: var(--navy-800);
+  --primary-700: var(--navy-700);
+  --primary-600: var(--navy-600);
+  --primary-500: var(--navy-500);
+  --primary-400: var(--navy-400);
+  --primary-100: var(--navy-100);
+  --primary-50:  var(--navy-50);
+
+  /* Liquid Sapphire & Cyan Accents */
+  --liquid-cyan-500: #0ea5e9;
+  --liquid-cyan-400: #38bdf8;
+  --liquid-cyan-100: #e0f2fe;
+  --liquid-cyan-50:  #f0f9ff;
+
+  /* Status Colors */
+  --success-700: #065f46;
+  --success-600: #059669;
+  --success-500: #10b981;
+  --success-100: #d1fae5;
+  --success-50:  #ecfdf5;
+
+  --warning-700: #92400e;
+  --warning-600: #d97706;
+  --warning-500: #f59e0b;
+  --warning-100: #fef3c7;
+  --warning-50:  #fffbeb;
+
+  --danger-700:  #991b1b;
+  --danger-600:  #dc2626;
+  --danger-500:  #ef4444;
+  --danger-100:  #fee2e2;
+  --danger-50:   #fef2f2;
+
+  --line-green:  #06C755;
+  --line-green-dark: #05b34c;
+  --line-green-light: #e8f9ee;
+
+  /* Neutrals & Slate */
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50:  #f8fafc;
+  --white:     #ffffff;
+
+  /* Liquid Glass Design Tokens */
+  --glass-bg-card: rgba(255, 255, 255, 0.76);
+  --glass-bg-card-hover: rgba(255, 255, 255, 0.88);
+  --glass-bg-subtle: rgba(240, 246, 255, 0.65);
+  --glass-bg-input: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-border-subtle: rgba(27, 59, 111, 0.12);
+  --glass-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 2px 0 rgba(19, 44, 84, 0.03);
+  --glass-blur: blur(20px) saturate(190%);
+  --glass-blur-heavy: blur(32px) saturate(200%);
+
+  /* Liquid Shadows */
+  --shadow-xs: 0 1px 3px rgba(11, 26, 48, 0.04);
+  --shadow-sm: 0 3px 10px rgba(11, 26, 48, 0.05);
+  --shadow-md: 0 12px 32px -4px rgba(11, 26, 48, 0.08), 0 4px 12px -2px rgba(11, 26, 48, 0.03);
+  --shadow-lg: 0 24px 50px -10px rgba(11, 26, 48, 0.11), 0 10px 20px -5px rgba(11, 26, 48, 0.04);
+  --shadow-xl: 0 35px 70px -15px rgba(11, 26, 48, 0.18);
+  --shadow-glow-navy: 0 12px 28px -4px rgba(27, 59, 111, 0.35);
+  --shadow-glow-cyan: 0 8px 24px -2px rgba(14, 165, 233, 0.3);
+
+  /* Radius */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-heading: 'Prompt', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Sarabun', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-en: 'Plus Jakarta Sans', -apple-system, sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   CSS Reset & Base Setup
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #f3f7fc;
+  color: var(--slate-800);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1220px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ==========================================================================
+   Ambient Liquid Background Glow Orbs
+   ========================================================================== */
+
+.liquid-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.liquid-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.65;
+  will-change: transform;
+  animation: floatOrb 20s infinite alternate ease-in-out;
+}
+
+.liquid-orb-1 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(19, 44, 84, 0.28) 0%, rgba(37, 77, 140, 0.12) 60%, transparent 80%);
+  top: -120px;
+  left: -100px;
+  animation-duration: 18s;
+}
+
+.liquid-orb-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.22) 0%, rgba(77, 130, 212, 0.12) 60%, transparent 80%);
+  top: 50px;
+  right: -150px;
+  animation-duration: 22s;
+  animation-delay: -5s;
+}
+
+.liquid-orb-3 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(27, 59, 111, 0.2) 0%, rgba(189, 211, 248, 0.2) 60%, transparent 80%);
+  bottom: 10%;
+  left: 20%;
+  animation-duration: 25s;
+  animation-delay: -10s;
+}
+
+.liquid-orb-4 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, rgba(19, 44, 84, 0.1) 60%, transparent 80%);
+  bottom: -100px;
+  right: 10%;
+  animation-duration: 19s;
+  animation-delay: -3s;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, 40px) scale(1.08);
+  }
+  100% {
+    transform: translate(-30px, 20px) scale(0.95);
+  }
+}
+
+/* ==========================================================================
+   Top Announcement Bar (Deep Navy Liquid Accent)
+   ========================================================================== */
+
+.top-announcement {
+  background: linear-gradient(90deg, #081326 0%, #102342 50%, #0c1a32 100%);
+  color: var(--navy-100);
+  font-size: 0.84rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 101;
+  backdrop-filter: blur(10px);
+}
+
+.top-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.operating-hours {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+}
+
+.operating-hours i {
+  color: var(--liquid-cyan-400);
+  font-size: 0.95rem;
+}
+
+.operating-hours strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.hotline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-fast);
+}
+
+.hotline-badge i {
+  color: #fbbf24;
+}
+
+.hotline-badge:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   Main Navigation Header (Sticky Liquid Glass)
+   ========================================================================== */
+
+.main-header {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 24px 0 rgba(11, 26, 48, 0.04), var(--glass-specular);
+  transition: all var(--transition-normal);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.logo-icon-wrapper {
+  width: 46px;
+  height: 46px;
+  background: linear-gradient(135deg, #0b1a30 0%, #1b3b6f 55%, #0ea5e9 100%);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 6px 16px rgba(19, 44, 84, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-normal);
+}
+
+.logo-icon-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.35) 50%, transparent 60%);
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+.brand-logo:hover .logo-icon-wrapper {
+  transform: translateY(-1px) scale(1.03);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-heading);
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--navy-900);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  color: var(--navy-600);
+  font-weight: 400;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--slate-700);
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid transparent;
+}
+
+.nav-link:hover {
+  color: var(--navy-800);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(27, 59, 111, 0.12);
+  box-shadow: var(--shadow-xs);
+}
+
+.nav-link.active {
+  color: var(--white);
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(19, 44, 84, 0.25);
+  border-color: transparent;
+}
+
+.btn-header-setting {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(27, 59, 111, 0.15);
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--slate-700);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.btn-header-setting:hover {
+  background: #ffffff;
+  border-color: var(--line-green);
+  color: var(--navy-900);
+  box-shadow: 0 3px 10px rgba(6, 199, 85, 0.15);
+}
+
+#ticketCountBadge {
+  background: var(--liquid-cyan-500);
+  color: var(--white);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(14, 165, 233, 0.35);
+}
+
+/* ==========================================================================
+   Hero Section (Liquid Frosted Presence)
+   ========================================================================== */
+
+.hero-section {
+  padding: 42px 0 32px;
+  position: relative;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  color: var(--navy-800);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  box-shadow: var(--shadow-sm), var(--glass-specular);
+  margin-bottom: 18px;
+  transition: transform var(--transition-fast);
+}
+
+.hero-badge i {
+  color: var(--navy-600);
+}
+
+.hero-badge:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--navy-900);
+  background: linear-gradient(135deg, #0b1a30 0%, #153463 50%, #204c8f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.28;
+  margin-bottom: 14px;
+  max-width: 820px;
+  letter-spacing: -0.015em;
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--slate-600);
+  max-width: 740px;
+  line-height: 1.65;
+  margin-bottom: 26px;
+  font-weight: 400;
+}
+
+.trust-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--slate-700);
+  box-shadow: var(--shadow-xs), var(--glass-specular);
+  transition: all var(--transition-normal);
+}
+
+.trust-pill:hover {
+  background: rgba(255, 255, 255, 0.92);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: rgba(27, 59, 111, 0.2);
+}
+
+.text-amber { color: var(--warning-500); }
+.text-blue { color: var(--navy-600); }
+.text-emerald { color: var(--success-600); }
+
+/* ==========================================================================
+   Main Content Layout (Grid)
+   ========================================================================== */
+
+.main-content-wrapper {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 30px;
+  padding-bottom: 64px;
+  align-items: start;
+}
+
+.service-card {
+  background: var(--glass-bg-card);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md), var(--glass-specular);
+  padding: 32px;
+  position: relative;
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.service-card:hover {
+  box-shadow: var(--shadow-lg), var(--glass-specular);
+  border-color: rgba(255, 255, 255, 0.98);
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 22px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(27, 59, 111, 0.08);
+}
+
+.header-icon-box {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, rgba(19, 44, 84, 0.08) 0%, rgba(37, 77, 140, 0.12) 100%);
+  color: var(--navy-800);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(27, 59, 111, 0.12);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.success-icon-box {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(16, 185, 129, 0.14) 100%);
+  color: var(--success-600);
+  border-color: rgba(5, 150, 105, 0.16);
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.32rem;
+  font-weight: 700;
+  color: var(--navy-900);
+  line-height: 1.3;
+}
+
+.card-subtitle {
+  font-size: 0.88rem;
+  color: var(--slate-500);
+  margin-top: 3px;
+}
+
+/* ==========================================================================
+   LINE User Banner (LIFF Auto-Detection)
+   ========================================================================== */
+
+.line-user-banner {
+  background: linear-gradient(135deg, rgba(6, 199, 85, 0.08) 0%, rgba(240, 253, 244, 0.8) 100%);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(6, 199, 85, 0.25);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+  box-shadow: 0 2px 8px rgba(6, 199, 85, 0.08);
+  animation: fadeIn 0.3s ease;
+}
+
+.line-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.line-user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--line-green);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  overflow: hidden;
+  border: 2px solid var(--white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.line-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.line-user-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.line-user-title {
+  font-size: 0.72rem;
+  color: var(--line-green-dark);
+  font-weight: 600;
+}
+
+.line-user-name {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy-900);
+}
+
+.line-connected-badge {
+  font-size: 0.78rem;
+  color: var(--line-green-dark);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(6, 199, 85, 0.2);
+}
+
+/* ==========================================================================
+   Liquid Form Controls & Input Styling
+   ========================================================================== */
+
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.form-label {
+  font-family: var(--font-heading);
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-label-icon {
+  color: var(--navy-700);
+  font-size: 0.9rem;
+}
+
+.required-star {
+  color: var(--danger-600);
+  font-weight: 700;
+}
+
+.quick-helpers {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 2px 0 6px;
+}
+
+.helper-label {
+  font-size: 0.78rem;
+  color: var(--slate-500);
+  font-weight: 500;
+}
+
+.quick-pill {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(27, 59, 111, 0.12);
+  color: var(--navy-800);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  padding: 3px 11px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(6px);
+}
+
+.quick-pill:hover {
+  background: var(--navy-800);
+  color: var(--white);
+  border-color: var(--navy-800);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(19, 44, 84, 0.2);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  color: var(--navy-950);
+  background-color: var(--glass-bg-input);
+  border: 1.5px solid rgba(27, 59, 111, 0.14);
+  border-radius: var(--radius-md);
+  padding: 13px 44px 13px 15px;
+  transition: all var(--transition-fast);
+  outline: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 2px rgba(11, 26, 48, 0.02);
+}
+
+.form-control::placeholder {
+  color: var(--slate-400);
+  font-size: 0.9rem;
+}
+
+.form-control:hover {
+  border-color: rgba(27, 59, 111, 0.3);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.form-control:focus {
+  background-color: #ffffff;
+  border-color: var(--navy-700);
+  box-shadow: 0 0 0 4px rgba(27, 59, 111, 0.12), 0 4px 12px rgba(11, 26, 48, 0.05);
+}
+
+textarea.form-control {
+  padding-right: 15px;
+  resize: vertical;
+  min-height: 88px;
+  line-height: 1.55;
+}
+
+select.form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.input-icon-right {
+  position: absolute;
+  right: 15px;
+  color: var(--slate-400);
+  font-size: 1rem;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field-hint {
+  font-size: 0.78rem;
+  color: var(--slate-500);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Error States */
+.error-message {
+  display: none;
+  font-size: 0.82rem;
+  color: var(--danger-600);
+  font-weight: 500;
+  align-items: center;
+  gap: 6px;
+  animation: fadeIn 0.2s ease-in;
+}
+
+.has-error .form-control {
+  border-color: var(--danger-500) !important;
+  background-color: rgba(254, 242, 242, 0.9);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
+
+.has-error .error-message {
+  display: flex;
+}
+
+/* ==========================================================================
+   Photo Upload Component
+   ========================================================================== */
+
+.photo-upload-zone {
+  border: 2px dashed rgba(27, 59, 111, 0.22);
+  border-radius: var(--radius-lg);
+  background: rgba(248, 250, 252, 0.7);
+  padding: 16px;
+  text-align: center;
+  transition: var(--transition-normal);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.photo-upload-zone:hover,
+.photo-upload-zone.dragover {
+  border-color: var(--navy-600);
+  background: rgba(241, 245, 249, 0.95);
+  box-shadow: 0 4px 12px rgba(27, 59, 111, 0.08);
+}
+
+.photo-upload-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+}
+
+.photo-upload-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(27, 59, 111, 0.1) 0%, rgba(14, 165, 233, 0.15) 100%);
+  color: var(--navy-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 2px;
+  transition: transform 0.2s ease;
+}
+
+.photo-upload-zone:hover .photo-upload-icon {
+  transform: translateY(-2px) scale(1.05);
+  color: var(--navy-900);
+}
+
+.photo-upload-title {
+  font-size: 0.9rem;
+  color: var(--navy-900);
+}
+
+.photo-upload-subtitle {
+  font-size: 0.76rem;
+  color: var(--slate-500);
+}
+
+.photo-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.photo-preview-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--slate-200);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+.photo-preview-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-preview-card .btn-remove-photo {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.8);
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.photo-preview-card .btn-remove-photo:hover {
+  background: var(--danger-600);
+  transform: scale(1.1);
+}
+
+.photo-add-more-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border: 1.5px dashed var(--slate-300);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--slate-500);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.72rem;
+  gap: 4px;
+}
+
+.photo-add-more-btn:hover {
+  border-color: var(--navy-600);
+  color: var(--navy-800);
+  background: #ffffff;
+}
+
+.has-error .input-icon-right {
+  color: var(--danger-500);
+}
+
+@keyframes shakeInput {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.shake-field {
+  animation: shakeInput 0.4s ease;
+}
+
+/* Form Action Buttons (Liquid Navy Glow) */
+.form-action-area {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.btn-submit {
+  flex: 1;
+  background: linear-gradient(135deg, #0b1a30 0%, #132c54 50%, #1b3b6f 100%);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 14px 26px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: var(--shadow-glow-navy);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.btn-submit::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.22) 50%, transparent 60%);
+  transform: rotate(25deg);
+  transition: all 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-submit:hover {
+  background: linear-gradient(135deg, #060e1a 0%, #0f2342 50%, #153463 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -6px rgba(19, 44, 84, 0.45);
+}
+
+.btn-submit:hover::after {
+  left: 60%;
+}
+
+.btn-submit:active {
+  transform: translateY(1px);
+}
+
+.btn-reset {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--slate-700);
+  border: 1px solid rgba(27, 59, 111, 0.16);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 14px 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.btn-reset:hover {
+  background: #ffffff;
+  color: var(--navy-900);
+  border-color: rgba(27, 59, 111, 0.3);
+  box-shadow: var(--shadow-xs);
+}
+
+.privacy-note {
+  font-size: 0.8rem;
+  color: var(--slate-500);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   Request History & Ticket Tracking List
+   ========================================================================== */
+
+.history-header {
+  justify-content: space-between;
+}
+
+.history-title-area {
+  flex: 1;
+}
+
+.history-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-secondary-sm {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--navy-800);
+  border: 1px solid rgba(27, 59, 111, 0.14);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(6px);
+}
+
+.btn-secondary-sm:hover {
+  background: #ffffff;
+  border-color: var(--navy-700);
+  color: var(--navy-900);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-secondary-sm.text-danger {
+  color: var(--danger-600);
+}
+
+.btn-secondary-sm.text-danger:hover {
+  background: var(--danger-50);
+  border-color: var(--danger-100);
+}
+
+.history-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  color: var(--slate-400);
+  font-size: 0.9rem;
+}
+
+.search-input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 11px 36px 11px 40px;
+  border: 1.5px solid rgba(27, 59, 111, 0.12);
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.85);
+  outline: none;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.search-input:focus {
+  background-color: #ffffff;
+  border-color: var(--navy-700);
+  box-shadow: 0 0 0 3px rgba(27, 59, 111, 0.1);
+}
+
+.btn-clear-search {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--slate-400);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.btn-clear-search:hover {
+  color: var(--slate-600);
+}
+
+.filter-status-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-chip {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(27, 59, 111, 0.12);
+  color: var(--slate-700);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(6px);
+}
+
+.filter-chip:hover {
+  background: #ffffff;
+  color: var(--navy-900);
+  border-color: rgba(27, 59, 111, 0.25);
+  transform: translateY(-1px);
+}
+
+.filter-chip.active {
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(19, 44, 84, 0.22);
+}
+
+/* ==========================================================================
+   Ticket Items (Liquid Glass Cards)
+   ========================================================================== */
+
+.tickets-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Custom Scrollbar for Liquid UI */
+.tickets-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tickets-container::-webkit-scrollbar-track {
+  background: rgba(27, 59, 111, 0.03);
+  border-radius: 10px;
+}
+
+.tickets-container::-webkit-scrollbar-thumb {
+  background: rgba(27, 59, 111, 0.18);
+  border-radius: 10px;
+}
+
+.tickets-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(27, 59, 111, 0.35);
+}
+
+.ticket-item-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--shadow-xs), var(--glass-specular);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  border-left: 4px solid var(--navy-500);
+}
+
+.ticket-item-card:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md), var(--glass-specular);
+}
+
+.ticket-item-card.status-pending-card {
+  border-left-color: var(--warning-500);
+}
+
+.ticket-item-card.status-scheduled-card {
+  border-left-color: var(--navy-700);
+}
+
+.ticket-item-card.status-completed-card {
+  border-left-color: var(--success-500);
+}
+
+.ticket-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ticket-code {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy-900);
+}
+
+.ticket-time-ago {
+  font-size: 0.76rem;
+  color: var(--slate-400);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ticket-body-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.ticket-meta-line {
+  font-size: 0.85rem;
+  color: var(--slate-600);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticket-meta-line i {
+  color: var(--navy-500);
+  font-size: 0.85rem;
+  width: 14px;
+  text-align: center;
+}
+
+.ticket-meta-line strong {
+  color: var(--navy-950);
+}
+
+.ticket-customer-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.ticket-issue-preview {
+  font-size: 0.84rem;
+  color: var(--slate-600);
+  background: rgba(240, 246, 255, 0.65);
+  border: 1px solid rgba(27, 59, 111, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin-top: 4px;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ticket-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(27, 59, 111, 0.06);
+}
+
+.btn-ticket-view {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(27, 59, 111, 0.15);
+  color: var(--navy-800);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-ticket-view:hover {
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(19, 44, 84, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+}
+
+.status-pending {
+  background: rgba(254, 243, 199, 0.9);
+  color: var(--warning-700);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-scheduled {
+  background: rgba(226, 237, 253, 0.9);
+  color: var(--navy-800);
+  border: 1px solid rgba(27, 59, 111, 0.25);
+}
+
+.status-completed {
+  background: rgba(209, 250, 229, 0.9);
+  color: var(--success-700);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  text-align: center;
+}
+
+.empty-icon-wrap {
+  width: 72px;
+  height: 72px;
+  background: rgba(240, 246, 255, 0.8);
+  border: 1px solid rgba(27, 59, 111, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--navy-400);
+  margin-bottom: 16px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.empty-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy-900);
+  margin-bottom: 6px;
+}
+
+.empty-desc {
+  font-size: 0.88rem;
+  color: var(--slate-500);
+  max-width: 320px;
+  margin-bottom: 20px;
+}
+
+.btn-empty-action {
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: var(--white);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-glow-navy);
+  transition: all var(--transition-fast);
+}
+
+.btn-empty-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -4px rgba(19, 44, 84, 0.4);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.main-footer {
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: var(--glass-blur);
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--slate-600);
+}
+
+.footer-subtext {
+  font-size: 0.78rem;
+  color: var(--slate-400);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Liquid Glass Modals
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(8, 19, 38, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-xl);
+  max-width: 580px;
+  width: 100%;
+  box-shadow: var(--shadow-xl), var(--glass-specular);
+  position: relative;
+  overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.92) translateY(10px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal-accent-bar {
+  height: 5px;
+  background: linear-gradient(90deg, #0b1a30 0%, #1b3b6f 50%, #0ea5e9 100%);
+  width: 100%;
+}
+
+.modal-accent-bar.bar-blue {
+  background: linear-gradient(90deg, var(--navy-900) 0%, var(--navy-600) 100%);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(240, 246, 255, 0.8);
+  border: 1px solid rgba(27, 59, 111, 0.1);
+  color: var(--slate-500);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background: var(--danger-50);
+  color: var(--danger-600);
+  border-color: var(--danger-100);
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 28px;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.success-animation-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+  animation: scaleUp 0.4s ease;
+}
+
+@keyframes scaleUp {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.ticket-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(240, 246, 255, 0.85);
+  border: 1px solid rgba(27, 59, 111, 0.15);
+  color: var(--navy-800);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--navy-900);
+  margin-bottom: 12px;
+}
+
+.official-reply-box {
+  background: linear-gradient(135deg, rgba(240, 246, 255, 0.9) 0%, rgba(226, 237, 253, 0.7) 100%);
+  border: 1px solid rgba(27, 59, 111, 0.16);
+  border-left: 4px solid var(--navy-700);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin: 16px 0 20px;
+  text-align: left;
+  position: relative;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.reply-quote-icon {
+  color: var(--navy-400);
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.reply-text {
+  font-size: 0.95rem;
+  color: var(--navy-900);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.submitted-summary-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(27, 59, 111, 0.12);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.summary-card-title {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.summary-label {
+  font-size: 0.75rem;
+  color: var(--slate-500);
+  font-weight: 500;
+}
+
+.summary-val {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy-950);
+}
+
+.text-primary-dark {
+  color: var(--navy-700);
+}
+
+/* Modal Buttons */
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.btn-modal-primary {
+  flex: 1;
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: var(--shadow-glow-navy);
+  transition: all var(--transition-fast);
+}
+
+.btn-modal-primary:hover {
+  background: linear-gradient(135deg, #060e1a 0%, #132c54 100%);
+  transform: translateY(-1px);
+}
+
+.btn-modal-outline {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--navy-900);
+  border: 1px solid rgba(27, 59, 111, 0.2);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 12px 18px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.btn-modal-outline:hover {
+  background: #ffffff;
+  border-color: var(--navy-700);
+}
+
+/* LINE Modal Actions */
+.line-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.btn-line-primary {
+  background: linear-gradient(135deg, #06C755 0%, #05a847 100%);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(6, 199, 85, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.btn-line-primary:hover {
+  background: linear-gradient(135deg, #05b34c 0%, #048e3c 100%);
+  transform: translateY(-1px);
+}
+
+.line-modal-actions-row {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-line-outline {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--navy-900);
+  border: 1.5px solid rgba(6, 199, 85, 0.35);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.btn-line-outline:hover {
+  background: var(--line-green-light);
+  border-color: var(--line-green);
+  color: var(--line-green-dark);
+}
+
+/* Detail Modal Specifics */
+.detail-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.detail-ticket-id {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy-700);
+}
+
+.detail-content-box {
+  width: 100%;
+  text-align: left;
+  background: rgba(240, 246, 255, 0.7);
+  border: 1px solid rgba(27, 59, 111, 0.12);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+/* Customer Status Timeline & Lock Notice */
+.customer-status-tracker {
+  width: 100%;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(27, 59, 111, 0.12);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  margin-top: 12px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.tracker-title {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.timeline-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.step-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(240, 246, 255, 0.9);
+  color: var(--slate-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: all var(--transition-normal);
+  border: 2px solid var(--white);
+  box-shadow: 0 2px 6px rgba(11, 26, 48, 0.08);
+}
+
+.timeline-step.completed .step-icon {
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(19, 44, 84, 0.3);
+}
+
+.timeline-step.active .step-icon {
+  background: linear-gradient(135deg, var(--navy-800) 0%, var(--liquid-cyan-500) 100%);
+  color: var(--white);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
+}
+
+.step-text {
+  margin-top: 6px;
+}
+
+.step-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--navy-900);
+}
+
+.step-desc {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--slate-400);
+}
+
+.timeline-connector {
+  flex: 0.8;
+  height: 3px;
+  background: rgba(27, 59, 111, 0.1);
+  margin: 0 -8px 24px -8px;
+  position: relative;
+  z-index: 1;
+  transition: background var(--transition-normal);
+}
+
+.timeline-connector.active {
+  background: var(--navy-700);
+}
+
+.ticket-lock-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--slate-600);
+  background: rgba(254, 243, 199, 0.4);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 9px 13px;
+  margin-top: 10px;
+}
+
+.ticket-lock-notice i {
+  color: var(--warning-600);
+  font-size: 0.9rem;
+}
+
+/* Staff Status Modifier */
+.status-modifier-section {
+  width: 100%;
+  text-align: left;
+  background: linear-gradient(135deg, rgba(240, 253, 244, 0.85) 0%, rgba(209, 250, 229, 0.5) 100%);
+  border: 1px dashed rgba(5, 150, 105, 0.35);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-top: 12px;
+}
+
+.modifier-label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--success-700);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn-status-change {
+  background: var(--white);
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  color: var(--success-700);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.btn-status-change:hover {
+  background: var(--success-600);
+  color: var(--white);
+  border-color: var(--success-600);
+}
+
+.btn-status-change.active-status-btn {
+  background: var(--success-700);
+  color: var(--white);
+  border-color: var(--success-700);
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(6, 95, 70, 0.25);
+}
+
+/* LINE Settings Modal */
+.settings-field {
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.settings-field label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  margin-bottom: 6px;
+}
+
+.settings-help {
+  font-size: 0.75rem;
+  color: var(--slate-400);
+  margin-top: 4px;
+}
+
+.settings-help a {
+  color: var(--navy-600);
+  text-decoration: underline;
+}
+
+.line-guide-card {
+  background: rgba(240, 246, 255, 0.7);
+  border: 1px solid rgba(27, 59, 111, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  color: var(--slate-600);
+  text-align: left;
+  margin-top: 14px;
+}
+
+.line-guide-card ol {
+  padding-left: 18px;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.line-guide-card code {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  color: var(--navy-800);
+}
+
+/* ==========================================================================
+   Toast Notifications (Liquid Glass)
+   ========================================================================== */
+
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg), var(--glass-specular);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--navy-900);
+  pointer-events: auto;
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 4px solid var(--navy-700);
+}
+
+.toast-success {
+  border-left-color: var(--success-500);
+}
+
+.toast-success i {
+  color: var(--success-500);
+}
+
+.toast-error {
+  border-left-color: var(--danger-500);
+}
+
+.toast-error i {
+  color: var(--danger-500);
+}
+
+.toast-info i {
+  color: var(--navy-600);
+}
+
+@keyframes slideInRight {
+  0% { transform: translateX(50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ==========================================================================
+   Mobile Bottom Navigation (Liquid Glass Bar)
+   ========================================================================== */
+
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border-top: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 8px 12px 14px;
+  z-index: 90;
+  box-shadow: 0 -4px 20px rgba(11, 26, 48, 0.06);
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: var(--slate-500);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-item i {
+  font-size: 1.15rem;
+}
+
+.mobile-nav-item.active {
+  color: var(--navy-800);
+  font-weight: 700;
+}
+
+.m-nav-icon-wrap {
+  position: relative;
+}
+
+.m-nav-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: var(--liquid-cyan-500);
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .main-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-announcement {
+    display: none;
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+  }
+
+  body {
+    padding-bottom: 70px;
+  }
+
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+  }
+
+  .service-card {
+    padding: 22px 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .modal-card {
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-body {
+    padding: 20px 16px;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toast-container {
+    bottom: 80px;
+    right: 16px;
+    left: 16px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Background Ambient Liquid Glass Mesh Orbs -->
+  <div class="liquid-bg-container" aria-hidden="true">
+    <div class="liquid-orb liquid-orb-1"></div>
+    <div class="liquid-orb liquid-orb-2"></div>
+    <div class="liquid-orb liquid-orb-3"></div>
+    <div class="liquid-orb liquid-orb-4"></div>
+  </div>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-announcement" aria-label="เวลาทำการ">
+    <div class="container top-bar-content">
+      <div class="operating-hours">
+        <i class="fa-regular fa-clock"></i>
+        <span>เวลาทำการฝ่ายบริการ: จันทร์ - เสาร์ <strong>09:00 - 16:30 น.</strong></span>
+      </div>
+      <div class="quick-contact">
+        <span class="hotline-badge"><i class="fa-solid fa-headset"></i> สายด่วนบริการลูกค้า <strong>02-123-4567</strong></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header">
+    <div class="container header-content">
+      <div class="brand-logo">
+        <div class="logo-icon-wrapper">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Preem Group</span>
+          <span class="brand-subtitle">ศูนย์แจ้งซ่อมและบริการหลังการขาย</span>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="#request-form-section" class="nav-link active"><i class="fa-solid fa-file-circle-plus"></i> แจ้งซ่อมใหม่</a>
+        <a href="#history-section" class="nav-link"><i class="fa-solid fa-list-check"></i> ประวัติคำขอ (<span id="ticketCountBadge">0</span>)</a>
+        <button type="button" id="btnOpenLineSettings" class="btn-header-setting" title="ตั้งค่าเชื่อมต่อ LINE">
+          <i class="fa-brands fa-line" style="color: #06C755; font-size: 1.1rem;"></i> <span>ตั้งค่า LINE</span>
+        </button>
+        <a href="admin.html" class="btn-header-setting" title="เข้าสู่ระบบจัดการหลังบ้าน" style="color: var(--navy-900); text-decoration: none;">
+          <i class="fa-solid fa-user-shield text-blue"></i> <span>ระบบหลังบ้าน</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section with Trust Badges -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <i class="fa-solid fa-shield-halved"></i> มาตรฐานบริการหลังการขายระดับมืออาชีพ
+        </div>
+        <h1 class="hero-title">แจ้งปัญหาการใช้งาน & บริการซ่อมบำรุง</h1>
+        <p class="hero-desc">
+          กรอกข้อมูลรายละเอียดปัญหาของท่าน เจ้าหน้าที่ฝ่ายบริการและทีมช่างผู้เชี่ยวชาญพร้อมตรวจสอบและประสานงานติดต่อกลับเพื่อยืนยันนัดหมายในเวลาทำการ
+        </p>
+        
+        <!-- Trust Feature Cards -->
+        <div class="trust-features">
+          <div class="trust-pill">
+            <i class="fa-solid fa-bolt-lightning text-amber"></i>
+            <span>ติดต่อกลับในเวลาทำการ 9.00-16.30 น.</span>
+          </div>
+          <div class="trust-pill">
+            <i class="fa-solid fa-user-gear text-blue"></i>
+            <span>ทีมช่างผู้ชำนาญการเฉพาะทาง</span>
+          </div>
+          <div class="trust-pill">
+            <i class="fa-solid fa-award text-emerald"></i>
+            <span>รับประกันงานซ่อมและอะไหล่แท้</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main class="container main-content-wrapper">
+    
+    <!-- Left / Top: Service Request Form -->
+    <section id="request-form-section" class="service-card form-section-card">
+      <div class="card-header">
+        <div class="header-icon-box">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </div>
+        <div>
+          <h2 class="card-title">แบบฟอร์มแจ้งซ่อม / บริการหลังการขาย</h2>
+          <p class="card-subtitle">กรุณากรอกข้อมูลให้ครบถ้วนทุกช่องเพื่อความรวดเร็วในการให้บริการ</p>
+        </div>
+      </div>
+
+      <form id="serviceRequestForm" class="request-form" novalidate>
+        
+        <!-- LINE Profile Auto-detection Banner -->
+        <div id="lineUserBanner" class="line-user-banner" style="display: none;">
+          <div class="line-user-info">
+            <div class="line-user-avatar" id="lineUserAvatar">
+              <i class="fa-brands fa-line"></i>
+            </div>
+            <div class="line-user-text">
+              <span class="line-user-title"><i class="fa-brands fa-line"></i> เข้าใช้งานผ่าน LINE</span>
+              <span class="line-user-name" id="lineUserName">ผู้ใช้ LINE</span>
+            </div>
+          </div>
+          <div class="line-connected-badge">
+            <i class="fa-solid fa-circle-check"></i> ดึงชื่อให้อัตโนมัติ
+          </div>
+        </div>
+
+        <!-- Field 1: Customer Name -->
+        <div class="form-group" id="group-customerName">
+          <label for="customerName" class="form-label">
+            <i class="fa-solid fa-user form-label-icon"></i>
+            <span>1. ชื่อลูกค้า <span class="required-star">*</span></span>
+          </label>
+          <div class="input-wrapper">
+            <input 
+              type="text" 
+              id="customerName" 
+              name="customerName" 
+              class="form-control" 
+              placeholder="ตัวอย่าง: คุณสมชาย ใจดี" 
+              required
+              autocomplete="name"
+            >
+            <span class="input-icon-right"><i class="fa-solid fa-circle-user"></i></span>
+          </div>
+          <p class="error-message" id="error-customerName">
+            <i class="fa-solid fa-circle-exclamation"></i> กรุณากรอกชื่อลูกค้า
+          </p>
+        </div>
+
+        <!-- Field 2: Location -->
+        <div class="form-group" id="group-serviceLocation">
+          <label for="serviceLocation" class="form-label">
+            <i class="fa-solid fa-location-dot form-label-icon"></i>
+            <span>2. สถานที่ / หน้างาน <span class="required-star">*</span></span>
+          </label>
+          
+          <!-- Quick location helper pills -->
+          <div class="quick-helpers">
+            <span class="helper-label">ประเภทสถานที่:</span>
+            <button type="button" class="quick-pill location-pill" data-insert="บ้านพักอาศัย / ทาวน์โฮม ">บ้านพัก</button>
+            <button type="button" class="quick-pill location-pill" data-insert="คอนโดมิเนียม อาคาร/ห้อง ">คอนโด</button>
+            <button type="button" class="quick-pill location-pill" data-insert="สำนักงาน / บริษัท ">ออฟฟิศ</button>
+            <button type="button" class="quick-pill location-pill" data-insert="หน้าร้านค้า / โชว์รูม ">หน้าร้าน</button>
+            <button type="button" class="quick-pill location-pill" data-insert="โรงงาน / คลังสินค้า ">โรงงาน</button>
+          </div>
+
+          <div class="input-wrapper">
+            <textarea 
+              id="serviceLocation" 
+              name="serviceLocation" 
+              class="form-control textarea-location" 
+              rows="3" 
+              placeholder="ระบุที่อยู่หน้างาน เช่น บ้านเลขที่, ซอย, ถนน, แขวง/ตำบล, เขต/อำเภอ, จังหวัด" 
+              required
+            ></textarea>
+          </div>
+          <p class="error-message" id="error-serviceLocation">
+            <i class="fa-solid fa-circle-exclamation"></i> กรุณากรอกสถานที่หรือที่อยู่หน้างาน
+          </p>
+        </div>
+
+        <!-- Field 3: Issue Description -->
+        <div class="form-group" id="group-issueDetail">
+          <label for="issueDetail" class="form-label">
+            <i class="fa-solid fa-circle-question form-label-icon"></i>
+            <span>3. รายละเอียดปัญหา <span class="required-star">*</span></span>
+          </label>
+
+          <!-- Quick issue template pills -->
+          <div class="quick-helpers">
+            <span class="helper-label">อาการเบื้องต้น:</span>
+            <button type="button" class="quick-pill issue-pill" data-insert="เครื่องเปิดไม่ติด / ไฟไม่เข้า ">ไฟไม่เข้า</button>
+            <button type="button" class="quick-pill issue-pill" data-insert="เครื่องปรับอากาศไม่เย็น / มีน้ำหยด ">แอร์ไม่เย็น</button>
+            <button type="button" class="quick-pill issue-pill" data-insert="มีเสียงดังผิดปกติขณะทำงาน ">เสียงผิดปกติ</button>
+            <button type="button" class="quick-pill issue-pill" data-insert="อุปกรณ์ชำรุด แตกหัก หรือหลุดหลวม ">อุปกรณ์ชำรุด</button>
+            <button type="button" class="quick-pill issue-pill" data-insert="ระบบแจ้งเตือน Error Code ขึ้นหน้าจอ ">ขึ้น Error</button>
+          </div>
+
+          <div class="input-wrapper">
+            <textarea 
+              id="issueDetail" 
+              name="issueDetail" 
+              class="form-control textarea-issue" 
+              rows="4" 
+              placeholder="อธิบายรายละเอียดปัญหา อาการเสีย หรือข้อบกพร่องที่พบอย่างชัดเจน" 
+              required
+            ></textarea>
+          </div>
+          <p class="error-message" id="error-issueDetail">
+            <i class="fa-solid fa-circle-exclamation"></i> กรุณากรอกรายละเอียดปัญหา
+          </p>
+        </div>
+
+        <!-- Field 4: Contact Phone -->
+        <div class="form-group" id="group-contactPhone">
+          <label for="contactPhone" class="form-label">
+            <i class="fa-solid fa-phone form-label-icon"></i>
+            <span>4. เบอร์ติดต่อกลับ (เบอร์โทร 10 หลัก) <span class="required-star">*</span></span>
+          </label>
+          <div class="input-wrapper">
+            <input 
+              type="tel" 
+              id="contactPhone" 
+              name="contactPhone" 
+              class="form-control" 
+              placeholder="08X-XXX-XXXX หรือ 09X-XXX-XXXX" 
+              maxlength="12" 
+              required
+              autocomplete="tel"
+            >
+            <span class="input-icon-right" id="phoneValidIcon"><i class="fa-solid fa-mobile-screen"></i></span>
+          </div>
+          <p class="field-hint"><i class="fa-solid fa-circle-info"></i> กรอกเบอร์มือถือไทย 10 หลัก (เช่น 0812345678)</p>
+          <p class="error-message" id="error-contactPhone">
+            <i class="fa-solid fa-circle-exclamation"></i> กรุณากรอกเบอร์โทรศัพท์มือถือ 10 หลักให้ถูกต้อง (ขึ้นต้นด้วย 0)
+          </p>
+        </div>
+
+        <!-- Field 5: Preferred Date & Time -->
+        <div class="form-row-2col">
+          <!-- 5.1 Preferred Date -->
+          <div class="form-group" id="group-preferredDate">
+            <label for="preferredDate" class="form-label">
+              <i class="fa-solid fa-calendar-day form-label-icon"></i>
+              <span>5.1 วันที่สะดวกให้เข้าไปแก้ไข <span class="required-star">*</span></span>
+            </label>
+            <div class="input-wrapper">
+              <input 
+                type="date" 
+                id="preferredDate" 
+                name="preferredDate" 
+                class="form-control" 
+                required
+              >
+            </div>
+            <p class="error-message" id="error-preferredDate">
+              <i class="fa-solid fa-circle-exclamation"></i> กรุณาเลือกวันที่สะดวกให้เข้าไปแก้ไข
+            </p>
+          </div>
+
+          <!-- 5.2 Preferred Time -->
+          <div class="form-group" id="group-preferredTime">
+            <label for="preferredTime" class="form-label">
+              <i class="fa-solid fa-clock form-label-icon"></i>
+              <span>5.2 เวลาที่สะดวกให้เข้าไปแก้ไข <span class="required-star">*</span></span>
+            </label>
+            <div class="input-wrapper">
+              <select id="preferredTime" name="preferredTime" class="form-control" required>
+                <option value="" disabled selected>-- เลือกช่วงเวลา --</option>
+                <option value="09:00 - 11:30 น. (ช่วงเช้า)">09:00 - 11:30 น. (ช่วงเช้า)</option>
+                <option value="11:30 - 13:30 น. (ช่วงเที่ยง)">11:30 - 13:30 น. (ช่วงเที่ยง)</option>
+                <option value="13:30 - 15:00 น. (ช่วงบ่ายต้น)">13:30 - 15:00 น. (ช่วงบ่ายต้น)</option>
+                <option value="15:00 - 16:30 น. (ช่วงบ่ายแก่)">15:00 - 16:30 น. (ช่วงบ่ายแก่)</option>
+                <option value="สะดวกตลอดเวลาทำการ (09:00 - 16:30 น.)">สะดวกตลอดเวลาทำการ (09:00 - 16:30 น.)</option>
+              </select>
+              <span class="input-icon-right"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <p class="error-message" id="error-preferredTime">
+              <i class="fa-solid fa-circle-exclamation"></i> กรุณาเลือกช่วงเวลาที่สะดวก
+            </p>
+          </div>
+        </div>
+
+        <!-- Field 6: Photo Uploads (Optional) -->
+        <div class="form-group" id="group-issuePhotos">
+          <label class="form-label" for="photoFileInput">
+            <i class="fa-solid fa-camera form-label-icon"></i>
+            <span>6. แนบรูปถ่ายหน้างาน / อาการชำรุด <span class="optional-tag" style="font-size: 0.8rem; font-weight: normal; color: var(--slate-500);">(ไม่บังคับ, สูงสุด 3 รูป)</span></span>
+          </label>
+          
+          <div class="photo-upload-zone" id="photoDropZone">
+            <input 
+              type="file" 
+              id="photoFileInput" 
+              accept="image/*" 
+              multiple 
+              style="display: none;"
+            >
+            <div class="photo-upload-prompt" id="photoUploadPrompt" role="button" tabindex="0">
+              <div class="photo-upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+              <p class="photo-upload-title"><strong>แตะเพื่อถ่ายภาพ</strong> หรือเลือกรูปจากคลังภาพ</p>
+              <span class="photo-upload-subtitle">รองรับไฟล์ JPG, PNG, WEBP (สูงสุด 3 รูป)</span>
+            </div>
+            <div class="photo-preview-grid" id="photoPreviewGrid" style="display: none;"></div>
+          </div>
+          <p class="field-hint"><i class="fa-solid fa-circle-info"></i> ระบบจะช่วยย่อขนาดรูปภาพให้อัตโนมัติ เพื่อให้ส่งได้รวดเร็ว</p>
+        </div>
+
+        <!-- Submit Button Area -->
+        <div class="form-action-area">
+          <button type="submit" id="btnSubmitRequest" class="btn-submit">
+            <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> ส่งข้อมูลแจ้งซ่อม</span>
+            <span class="btn-loading" style="display: none;"><i class="fa-solid fa-circle-notch fa-spin"></i> กำลังส่งข้อมูล...</span>
+          </button>
+          <button type="button" id="btnResetForm" class="btn-reset">
+            <i class="fa-solid fa-rotate-left"></i> เคลียร์ฟอร์ม
+          </button>
+        </div>
+        
+        <p class="privacy-note">
+          <i class="fa-solid fa-lock"></i> ข้อมูลของท่านจะถูกเก็บรักษาอย่างปลอดภัยเพื่อการประสานงานบริการเท่านั้น
+        </p>
+
+      </form>
+    </section>
+
+    <!-- Right / Bottom: Request History & Live Status Tracking -->
+    <section id="history-section" class="service-card history-section-card">
+      <div class="card-header history-header">
+        <div class="header-icon-box success-icon-box">
+          <i class="fa-solid fa-clipboard-list"></i>
+        </div>
+        <div class="history-title-area">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <h2 class="card-title" id="historySectionTitle">ประวัติการแจ้งซ่อมของฉัน</h2>
+            <span id="staffRoleBadge" class="status-badge" style="display: none; background: #e0e7ff; color: #3730a3; font-size: 0.75rem; padding: 2px 8px;">
+              <i class="fa-solid fa-shield-halved"></i> โหมดช่าง/แอดมิน
+            </span>
+          </div>
+          <p class="card-subtitle" id="historySectionSubtitle">รายการที่คุณส่งคำขอไว้ในระบบ</p>
+        </div>
+        <div class="history-actions">
+          <button type="button" id="btnToggleStaffMode" class="btn-secondary-sm" title="เข้าสู่ระบบสำหรับช่าง/แอดมิน">
+            <i class="fa-solid fa-user-shield"></i> <span id="staffModeBtnText">สำหรับช่าง</span>
+          </button>
+          <button type="button" id="btnExportCSV" class="btn-secondary-sm" title="ส่งออกข้อมูลเป็น CSV" style="display: none;">
+            <i class="fa-solid fa-file-arrow-down"></i> <span class="action-btn-text">ส่งออก</span>
+          </button>
+          <button type="button" id="btnClearHistory" class="btn-secondary-sm text-danger" title="ล้างประวัติ" style="display: none;">
+            <i class="fa-solid fa-trash-can"></i> <span class="action-btn-text">ล้าง</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter and Search Toolbar -->
+      <div class="history-toolbar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input 
+            type="text" 
+            id="searchHistoryInput" 
+            placeholder="ค้นหาชื่อลูกค้า, เบอร์โทร, รหัสคำขอ..." 
+            class="search-input"
+          >
+          <button type="button" id="btnClearSearch" class="btn-clear-search" style="display: none;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="filter-status-group">
+          <button type="button" class="filter-chip active" data-status="all">ทั้งหมด (<span id="cntAll">0</span>)</button>
+          <button type="button" class="filter-chip" data-status="รอติดต่อกลับ">รอติดต่อกลับ (<span id="cntPending">0</span>)</button>
+          <button type="button" class="filter-chip" data-status="นัดหมายแล้ว">นัดหมายแล้ว (<span id="cntScheduled">0</span>)</button>
+          <button type="button" class="filter-chip" data-status="เสร็จสิ้น">เสร็จสิ้น (<span id="cntCompleted">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Tickets Container (Responsive Cards & Table View) -->
+      <div id="ticketsContainer" class="tickets-container">
+        <!-- Will be dynamically populated by JavaScript -->
+      </div>
+
+      <!-- Empty State View -->
+      <div id="emptyHistoryState" class="empty-state" style="display: none;">
+        <div class="empty-icon-wrap">
+          <i class="fa-solid fa-folder-open"></i>
+        </div>
+        <h3 class="empty-title">ยังไม่มีประวัติการแจ้งซ่อม</h3>
+        <p class="empty-desc">เมื่อท่านส่งแบบฟอร์มแจ้งปัญหา รายการจะถูกบันทึกและแสดงที่นี่ทันที</p>
+        <a href="#request-form-section" class="btn-empty-action"><i class="fa-solid fa-plus"></i> แจ้งซ่อมรายการแรก</a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <p>© 2026 Preem Group - ระบบแจ้งซ่อมและบริการหลังการขาย</p>
+      <p class="footer-subtext">เวลาทำการ: วันจันทร์ - เสาร์ เวลา 09:00 - 16:30 น. (หยุดวันอาทิตย์และวันหยุดนักขัตฤกษ์)</p>
+    </div>
+  </footer>
+
+  <!-- Modal: Success Confirmation Popup -->
+  <div id="successModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-accent-bar"></div>
+      
+      <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="ปิดหน้าต่าง">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-body">
+        <!-- Animated Success Checkmark Icon -->
+        <div class="success-animation-wrap">
+          <div class="success-circle">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <div class="sparkle-ring"></div>
+        </div>
+
+        <div class="ticket-pill-badge">
+          <i class="fa-solid fa-hashtag"></i> รหัสแจ้งซ่อม: <strong id="modalTicketId">REQ-20260820-001</strong>
+        </div>
+
+        <h3 id="modalTitle" class="modal-title">ส่งข้อมูลแจ้งซ่อมเรียบร้อยแล้ว!</h3>
+
+        <!-- The exact requested automated Thai response message -->
+        <div class="official-reply-box">
+          <div class="reply-quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+          <p class="reply-text">
+            "ขอบคุณที่แจ้งปัญหา ทางบริษัทยินดีบริการ และจะติดต่อกลับไปในเวลาทำการ 9.00-16.30 น. ทางบริษัทจะทำการนัดวันและเวลาอีกครั้ง ขอบคุณครับ"
+          </p>
+        </div>
+
+        <!-- Summary of submitted request -->
+        <div class="submitted-summary-card">
+          <h4 class="summary-card-title"><i class="fa-solid fa-receipt"></i> ข้อมูลสรุปการแจ้งซ่อม</h4>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-label">ชื่อลูกค้า:</span>
+              <span class="summary-val" id="modalSummaryName">-</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">เบอร์ติดต่อกลับ:</span>
+              <span class="summary-val" id="modalSummaryPhone">-</span>
+            </div>
+            <div class="summary-item full-width">
+              <span class="summary-label">สถานที่ / หน้างาน:</span>
+              <span class="summary-val" id="modalSummaryLocation">-</span>
+            </div>
+            <div class="summary-item full-width">
+              <span class="summary-label">รายละเอียดปัญหา:</span>
+              <span class="summary-val" id="modalSummaryIssue">-</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">วันที่สะดวก:</span>
+              <span class="summary-val text-primary-dark" id="modalSummaryDate">-</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">เวลาที่สะดวก:</span>
+              <span class="summary-val text-primary-dark" id="modalSummaryTime">-</span>
+            </div>
+            <div class="summary-item full-width">
+              <span class="summary-label">สถานะปัจจุบัน:</span>
+              <span class="status-badge status-pending"><i class="fa-solid fa-hourglass-half fa-spin"></i> รอติดต่อกลับ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LINE Actions Area -->
+        <div class="line-modal-actions">
+          <button type="button" id="btnLineSendChat" class="btn-line-primary">
+            <i class="fa-brands fa-line" style="font-size: 1.2rem;"></i> ส่งสรุปใบแจ้งซ่อมเข้าแชท LINE
+          </button>
+          <div class="line-modal-actions-row">
+            <button type="button" id="btnLineShare" class="btn-line-outline">
+              <i class="fa-solid fa-share-nodes"></i> แชร์ไปยัง LINE
+            </button>
+            <button type="button" id="btnLineContactOa" class="btn-line-outline">
+              <i class="fa-solid fa-headset"></i> ติดต่อ LINE OA
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal Action Buttons -->
+        <div class="modal-actions">
+          <button type="button" id="btnModalAcknowledge" class="btn-modal-primary">
+            <i class="fa-solid fa-check"></i> ตกลง / เรียบร้อย
+          </button>
+          <button type="button" id="btnModalPrint" class="btn-modal-outline">
+            <i class="fa-solid fa-print"></i> พิมพ์ / บันทึกใบคำขอ
+          </button>
+          <button type="button" id="btnLineCloseLiff" class="btn-modal-outline text-danger" style="display: none;">
+            <i class="fa-solid fa-xmark"></i> ปิดหน้าต่าง LINE
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Detail View & Status Update for Tickets -->
+  <div id="detailModal" class="modal-overlay" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-accent-bar bar-blue"></div>
+      
+      <button type="button" class="modal-close-btn" id="detailCloseBtn" aria-label="ปิด">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-body">
+        <div class="detail-header-flex">
+          <div>
+            <span class="detail-ticket-id" id="detailTicketId">#REQ-20260820-001</span>
+            <h3 class="modal-title" style="margin-top: 4px; text-align: left;">รายละเอียดใบแจ้งซ่อม</h3>
+          </div>
+          <div id="detailStatusBadge"></div>
+        </div>
+
+        <div class="detail-content-box" id="detailContentBody">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- LINE Actions from Detail View -->
+        <div class="line-modal-actions-row" style="margin-top: 14px;">
+          <button type="button" id="btnDetailLineShare" class="btn-line-outline">
+            <i class="fa-brands fa-line"></i> แชร์ข้อมูลเข้า LINE
+          </button>
+          <button type="button" id="btnDetailLineOa" class="btn-line-outline">
+            <i class="fa-solid fa-headset"></i> สอบถามสถานะทาง LINE OA
+          </button>
+        </div>
+
+        <!-- Customer Status Timeline Tracker (Visible for normal users) -->
+        <div id="customerStatusTracker" class="customer-status-tracker">
+          <div class="tracker-title"><i class="fa-solid fa-timeline"></i> ติดตามสถานะงานซ่อม:</div>
+          <div class="timeline-steps">
+            <div class="timeline-step" id="step1">
+              <div class="step-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+              <div class="step-text">
+                <span class="step-name">1. รับแจ้งเรื่อง</span>
+                <span class="step-desc">บันทึกข้อมูลแล้ว</span>
+              </div>
+            </div>
+            <div class="timeline-connector" id="connector1"></div>
+            <div class="timeline-step" id="step2">
+              <div class="step-icon"><i class="fa-solid fa-phone-volume"></i></div>
+              <div class="step-text">
+                <span class="step-name">2. ติดต่อ & นัดหมาย</span>
+                <span class="step-desc">ยืนยันวัน-เวลานัด</span>
+              </div>
+            </div>
+            <div class="timeline-connector" id="connector2"></div>
+            <div class="timeline-step" id="step3">
+              <div class="step-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="step-text">
+                <span class="step-name">3. เสร็จสิ้น</span>
+                <span class="step-desc">ดำเนินการเรียบร้อย</span>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-lock-notice">
+            <i class="fa-solid fa-lock"></i> <span>ข้อมูลใบแจ้งซ่อมถูกบันทึกแล้ว ไม่สามารถแก้ไขได้ หากต้องการเปลี่ยนแปลง กรุณาติดต่อทาง LINE OA หรือโทร 02-123-4567</span>
+          </div>
+        </div>
+
+        <!-- Status modifier for staff only (Visible ONLY in Staff Mode) -->
+        <div class="status-modifier-section" id="detailStatusModifierSection" style="display: none;">
+          <label class="modifier-label"><i class="fa-solid fa-user-shield"></i> จัดการสถานะงาน (เฉพาะทีมช่าง / แอดมิน):</label>
+          <div class="status-buttons-row">
+            <button type="button" class="btn-status-change" data-newstatus="รอติดต่อกลับ"><i class="fa-solid fa-hourglass-half"></i> รอติดต่อกลับ</button>
+            <button type="button" class="btn-status-change" data-newstatus="นัดหมายแล้ว"><i class="fa-solid fa-calendar-check"></i> นัดหมายแล้ว</button>
+            <button type="button" class="btn-status-change" data-newstatus="เสร็จสิ้น"><i class="fa-solid fa-circle-check"></i> เสร็จสิ้น</button>
+          </div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 20px;">
+          <button type="button" id="btnDetailClose" class="btn-modal-primary">ปิดหน้าต่าง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: LINE Integration Settings -->
+  <div id="lineSettingsModal" class="modal-overlay" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-accent-bar" style="background: linear-gradient(90deg, #06C755, #00B900);"></div>
+      
+      <button type="button" class="modal-close-btn" id="lineSettingsCloseBtn" aria-label="ปิด">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-body">
+        <div class="detail-header-flex">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <i class="fa-brands fa-line" style="font-size: 2.2rem; color: #06C755;"></i>
+            <div>
+              <h3 class="modal-title" style="margin: 0; text-align: left;">ตั้งค่าการเชื่อมต่อ LINE</h3>
+              <p style="font-size: 0.85rem; color: var(--slate-500); margin: 2px 0 0 0;">กำหนดค่า LINE LIFF และการแจ้งเตือนแอดมิน</p>
+            </div>
+          </div>
+        </div>
+
+        <form id="lineConfigForm" style="margin-top: 18px;">
+          <div class="settings-field">
+            <label for="cfgLiffId"><i class="fa-solid fa-key"></i> LINE LIFF ID (สำหรับเปิดใน LINE):</label>
+            <input type="text" id="cfgLiffId" class="form-control" placeholder="เช่น 200xxxxxxx-xxxxxxx">
+            <p class="settings-help">นำ LIFF ID ได้จาก <a href="https://developers.line.biz/" target="_blank" rel="noopener">LINE Developers Console</a></p>
+          </div>
+
+          <div class="settings-field">
+            <label for="cfgLineOa"><i class="fa-solid fa-at"></i> LINE Official Account ID / Link:</label>
+            <input type="text" id="cfgLineOa" class="form-control" placeholder="เช่น @preemgroup หรือ https://line.me/R/ti/p/@...">
+            <p class="settings-help">ลิงก์หรือไอดี LINE OA เพื่อให้ลูกค้ากดคุยสอบถามกับแอดมินได้โดยตรง</p>
+          </div>
+
+          <div class="settings-field">
+            <label for="cfgWebhookUrl"><i class="fa-solid fa-bell"></i> Webhook แจ้งเตือนเข้า LINE แอดมิน (URL):</label>
+            <input type="url" id="cfgWebhookUrl" class="form-control" placeholder="เช่น Google Apps Script Webhook URL">
+            <p class="settings-help">ส่งข้อมูลแจ้งซ่อมเข้ากลุ่มช่าง/แอดมินอัตโนมัติทันทีที่ลูกค้ากดส่งฟอร์ม</p>
+          </div>
+
+          <div class="line-guide-card">
+            <strong><i class="fa-solid fa-lightbulb"></i> วิธีนำไปใช้งานบน LINE:</strong>
+            <ol>
+              <li>สร้าง LIFF App ใน LINE Developers แล้วใส่ Endpoint URL ของเว็บนี้</li>
+              <li>นำลิงก์ <code>https://liff.line.me/YOUR-LIFF-ID</code> ไปใส่ใน <strong>Rich Menu</strong> ของ LINE Official Account</li>
+              <li>เมื่อลูกค้าเปิดผ่าน LINE จะดึงชื่อให้อัตโนมัติและส่งข้อความสรุปเข้าแชทได้ทันที</li>
+            </ol>
+          </div>
+
+          <div class="modal-actions" style="margin-top: 20px;">
+            <button type="submit" class="btn-modal-primary" style="background: var(--line-green);">
+              <i class="fa-solid fa-floppy-disk"></i> บันทึกการตั้งค่า
+            </button>
+            <button type="button" id="btnLineSettingsCancel" class="btn-modal-outline">
+              ยกเลิก
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Staff PIN Login -->
+  <div id="staffPinModal" class="modal-overlay" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-card" style="max-width: 400px;">
+      <div class="modal-accent-bar bar-blue"></div>
+      
+      <button type="button" class="modal-close-btn" id="staffPinCloseBtn" aria-label="ปิด">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-body" style="text-align: center;">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--primary-50); color: var(--primary-600); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 12px;">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+
+        <h3 class="modal-title" style="margin-bottom: 6px;">เข้าสู่ระบบทีมช่าง / แอดมิน</h3>
+        <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: 18px;">
+          กรุณากรอกรหัส PIN เพื่อดูและจัดการรายการแจ้งซ่อมทั้งหมด
+        </p>
+
+        <form id="staffPinForm">
+          <div class="input-wrapper" style="max-width: 200px; margin: 0 auto 8px;">
+            <input 
+              type="password" 
+              id="staffPinInput" 
+              class="form-control" 
+              placeholder="••••" 
+              maxlength="8" 
+              autocomplete="current-password"
+              style="text-align: center; font-size: 1.4rem; letter-spacing: 6px; font-weight: 700;"
+              required
+            >
+          </div>
+          <p class="error-message" id="staffPinError" style="display: none; justify-content: center; margin-bottom: 12px;">
+            <i class="fa-solid fa-circle-exclamation"></i> รหัส PIN ไม่ถูกต้อง
+          </p>
+          <p style="font-size: 0.78rem; color: var(--slate-400); margin-bottom: 18px;">
+            <i class="fa-solid fa-circle-info"></i> รหัส PIN เริ่มต้น: <code>1234</code>
+          </p>
+
+          <div class="modal-actions" style="flex-direction: column; gap: 8px;">
+            <button type="submit" class="btn-modal-primary" style="width: 100%;">
+              <i class="fa-solid fa-lock-open"></i> ยืนยันรหัส PIN
+            </button>
+            <button type="button" id="btnStaffPinCancel" class="btn-modal-outline" style="width: 100%;">
+              ยกเลิก
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" aria-label="เมนูหลักบนมือถือ">
+    <a href="#request-form-section" class="mobile-nav-item active" id="mNavForm">
+      <i class="fa-solid fa-file-circle-plus"></i>
+      <span>แจ้งซ่อม</span>
+    </a>
+    <a href="#history-section" class="mobile-nav-item" id="mNavHistory">
+      <div class="m-nav-icon-wrap">
+        <i class="fa-solid fa-list-check"></i>
+        <span class="m-nav-badge" id="mTicketCountBadge">0</span>
+      </div>
+      <span>ประวัติ</span>
+    </a>
+    <button type="button" class="mobile-nav-item" id="mNavLineOa">
+      <i class="fa-brands fa-line" style="color: #06C755;"></i>
+      <span>คุยไลน์</span>
+    </button>
+    <button type="button" class="mobile-nav-item" id="mNavSettings">
+      <i class="fa-solid fa-gear"></i>
+      <span>ตั้งค่า</span>
+    </button>
+  </nav>
+
+  <!-- LINE Integration Service -->
+  <script>
+/**
+ * ProService CARE - LINE Integration Module
+ * Handles LINE LIFF SDK, Profile Auto-fetch, Flex Message & Webhook Notifications
+ */
+
+window.LineService = (function () {
+  'use strict';
+
+  const STORAGE_KEY_LINE_CONFIG = 'proservice_care_line_config_v1';
+
+  const DEFAULT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxauzj6VE8TRVuwloco83xrGwKNLOjSd-ntKFPYHrnYWrRl3wxgphubA0xkprJhSr8/exec';
+
+  // Default / Active Configuration
+  let config = {
+    liffId: '', // User's LINE LIFF ID (e.g., 1234567890-AbcdEfgh)
+    lineOaId: '@preemgroup', // LINE Official Account ID / Link
+    webhookUrl: DEFAULT_WEBHOOK_URL, // Google Apps Script / Cloud Database Webhook
+    autoFillName: true,
+    sendChatReceipt: true
+  };
+
+  // State
+  let lineState = {
+    isLiffInitialized: false,
+    isInLineClient: false,
+    isLoggedIn: false,
+    profile: null // { userId, displayName, pictureUrl, statusMessage }
+  };
+
+  // Load configuration from localStorage
+  function loadConfig() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_LINE_CONFIG);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        config = Object.assign({}, config, parsed);
+        if (!config.webhookUrl) {
+          config.webhookUrl = DEFAULT_WEBHOOK_URL;
+        }
+      }
+    } catch (e) {
+      console.warn('Could not load LINE config from localStorage', e);
+    }
+    return config;
+  }
+
+  // Save configuration
+  function saveConfig(newConfig) {
+    config = Object.assign({}, config, newConfig);
+    try {
+      localStorage.setItem(STORAGE_KEY_LINE_CONFIG, JSON.stringify(config));
+    } catch (e) {
+      console.error('Could not save LINE config', e);
+    }
+  }
+
+  // Initialize LINE LIFF
+  async function initLiff() {
+    loadConfig();
+
+    if (typeof liff === 'undefined') {
+      console.warn('LINE LIFF SDK is not loaded.');
+      return lineState;
+    }
+
+    // If no LIFF ID is configured, check if URL has liffId parameter or use default empty
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLiffId = urlParams.get('liffId');
+    if (urlLiffId) {
+      config.liffId = urlLiffId;
+      saveConfig({ liffId: urlLiffId });
+    }
+
+    if (!config.liffId) {
+      console.info('LINE LIFF ID is not configured yet. Running in standard Web mode.');
+      return lineState;
+    }
+
+    try {
+      await liff.init({ liffId: config.liffId });
+      lineState.isLiffInitialized = true;
+      lineState.isInLineClient = liff.isInClient();
+      lineState.isLoggedIn = liff.isLoggedIn();
+
+      if (lineState.isLoggedIn) {
+        const profile = await liff.getProfile();
+        lineState.profile = profile;
+        console.log('LINE Profile loaded:', profile.displayName);
+      } else if (lineState.isInLineClient) {
+        // Automatically login if in client
+      }
+    } catch (err) {
+      console.error('LIFF Init Error:', err);
+    }
+
+    return lineState;
+  }
+
+  // Format Ticket Data into a clear readable LINE text summary
+  function formatTicketForLine(ticket) {
+    return [
+      `🔧 [ใบแจ้งซ่อม Preem Group]`,
+      `━━━━━━━━━━━━━━━━━━`,
+      `📋 รหัสคำขอ: ${ticket.id || ticket.ticketId}`,
+      `👤 ผู้แจ้ง: ${ticket.customerName}`,
+      `📞 เบอร์ติดต่อ: ${ticket.contactPhone}`,
+      `📍 หน้างาน: ${ticket.serviceLocation}`,
+      `⚠️ ปัญหา: ${ticket.issueDetail}`,
+      `📅 วันสะดวก: ${ticket.preferredDate}`,
+      `⏰ ช่วงเวลา: ${ticket.preferredTime}`,
+      `━━━━━━━━━━━━━━━━━━`,
+      `📌 สถานะ: ${ticket.status || 'รอติดต่อกลับ'}`
+    ].join('\n');
+  }
+
+  // Send message to current chat room via LIFF
+  async function sendMessageToChat(ticket) {
+    if (typeof liff === 'undefined' || !liff.isLoggedIn()) {
+      return { success: false, reason: 'not_in_liff' };
+    }
+
+    const messageText = formatTicketForLine(ticket);
+    try {
+      if (liff.isInClient()) {
+        await liff.sendMessages([
+          {
+            type: 'text',
+            text: messageText
+          }
+        ]);
+        return { success: true };
+      }
+    } catch (err) {
+      console.error('LIFF sendMessages failed:', err);
+      return { success: false, error: err };
+    }
+    return { success: false, reason: 'not_in_client' };
+  }
+
+  // Share Ticket summary with LINE Friends
+  async function shareTicketToLine(ticket) {
+    const text = formatTicketForLine(ticket);
+
+    if (typeof liff !== 'undefined' && liff.isLoggedIn() && liff.isApiAvailable('shareTargetPicker')) {
+      try {
+        const res = await liff.shareTargetPicker([
+          {
+            type: 'text',
+            text: text
+          }
+        ]);
+        if (res) return { success: true, method: 'shareTargetPicker' };
+      } catch (err) {
+        console.warn('ShareTargetPicker error, falling back to URL scheme', err);
+      }
+    }
+
+    const encodedText = encodeURIComponent(text);
+    const lineShareUrl = `https://line.me/R/msg/text/?${encodedText}`;
+    window.open(lineShareUrl, '_blank');
+    return { success: true, method: 'urlScheme' };
+  }
+
+  // Open Official LINE OA Chat with Prefilled Inquiry
+  function openLineOaChat(ticketId = '') {
+    let oaLink = config.lineOaId.trim();
+    if (!oaLink) {
+      oaLink = 'https://line.me';
+    } else if (oaLink.startsWith('@')) {
+      oaLink = `https://line.me/R/ti/p/${encodeURIComponent(oaLink)}`;
+    } else if (!oaLink.startsWith('http')) {
+      oaLink = `https://line.me/R/ti/p/@${encodeURIComponent(oaLink)}`;
+    }
+
+    if (ticketId) {
+      if (oaLink.includes('ti/p/')) {
+        window.open(`${oaLink}`, '_blank');
+      } else {
+        window.open(oaLink, '_blank');
+      }
+    } else {
+      window.open(oaLink, '_blank');
+    }
+  }
+
+  // Close LIFF Window
+  function closeLiffWindow() {
+    if (typeof liff !== 'undefined' && liff.isInClient()) {
+      liff.closeWindow();
+    } else {
+      window.close();
+    }
+  }
+
+  // ==========================================
+  // CLOUD DATABASE (Google Apps Script API)
+  // ==========================================
+
+  // Helper to format & clean Google Apps Script Web App URL
+  function cleanWebhookUrl(rawUrl) {
+    if (!rawUrl) return '';
+    let clean = rawUrl.trim();
+    // If user forgot /exec at the end of google script url
+    if (clean.includes('script.google.com/macros/s/') && !clean.includes('/exec')) {
+      clean = clean.replace(/\/+$/, '') + '/exec';
+    }
+    return clean;
+  }
+
+  // Fetch all tickets from Google Sheets via Webhook URL
+  async function fetchTicketsFromCloud() {
+    loadConfig();
+    const url = cleanWebhookUrl(config.webhookUrl);
+    if (!url) {
+      return { success: false, reason: 'no_webhook_url' };
+    }
+
+    try {
+      const fetchUrl = url.includes('?') ? `${url}&action=getTickets` : `${url}?action=getTickets`;
+      const response = await fetch(fetchUrl, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return {
+        success: true,
+        tickets: data.tickets || [],
+        count: data.count || (data.tickets ? data.tickets.length : 0)
+      };
+    } catch (err) {
+      console.warn('Cloud fetchTickets error:', err);
+      return { success: false, error: err.toString() };
+    }
+  }
+
+  // Create a new ticket in Google Sheets Cloud DB
+  async function createTicketOnCloud(ticket) {
+    loadConfig();
+    const url = cleanWebhookUrl(config.webhookUrl);
+    if (!url) return { skipped: true };
+
+    try {
+      const payload = {
+        action: 'createTicket',
+        ticket: ticket,
+        timestamp: new Date().toISOString()
+      };
+
+      // Google Apps Script requires text/plain or no-cors for simple fetch
+      await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
+      });
+
+      return { success: true };
+    } catch (e) {
+      console.warn('Cloud createTicket error:', e);
+      return { success: false, error: e.toString() };
+    }
+  }
+
+  // Update an existing ticket (status, technician, admin notes) in Google Sheets Cloud DB
+  async function updateTicketOnCloud(updatePayload) {
+    loadConfig();
+    const url = cleanWebhookUrl(config.webhookUrl);
+    if (!url) return { skipped: true };
+
+    try {
+      const payload = Object.assign({
+        action: 'updateTicket',
+        timestamp: new Date().toISOString()
+      }, updatePayload);
+
+      await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
+      });
+
+      return { success: true };
+    } catch (e) {
+      console.warn('Cloud updateTicket error:', e);
+      return { success: false, error: e.toString() };
+    }
+  }
+
+  // Delete a ticket from Google Sheets Cloud DB
+  async function deleteTicketOnCloud(ticketId) {
+    loadConfig();
+    const url = cleanWebhookUrl(config.webhookUrl);
+    if (!url || !ticketId) return { skipped: true };
+
+    try {
+      const payload = {
+        action: 'deleteTicket',
+        ticketId: ticketId,
+        timestamp: new Date().toISOString()
+      };
+
+      await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
+      });
+
+      return { success: true };
+    } catch (e) {
+      console.warn('Cloud deleteTicket error:', e);
+      return { success: false, error: e.toString() };
+    }
+  }
+
+  // Test connection to Google Apps Script Webhook
+  async function testConnection(customUrl = null) {
+    const rawUrl = customUrl || config.webhookUrl;
+    const url = cleanWebhookUrl(rawUrl);
+    if (!url) return { success: false, message: 'ยังไม่ได้ระบุ Webhook URL' };
+
+    try {
+      const fetchUrl = url.includes('?') ? `${url}&action=ping` : `${url}?action=ping`;
+      const response = await fetch(fetchUrl, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: { 'Accept': 'application/json' }
+      });
+      const data = await response.json();
+      return { success: true, data: data, cleanedUrl: url };
+    } catch (e) {
+      return { success: false, error: e.toString() };
+    }
+  }
+
+  // Alias for backward compatibility
+  async function sendAdminWebhookNotification(ticket) {
+    return createTicketOnCloud(ticket);
+  }
+
+  return {
+    getConfig: () => Object.assign({}, config),
+    saveConfig: saveConfig,
+    getState: () => Object.assign({}, lineState),
+    initLiff: initLiff,
+    formatTicketForLine: formatTicketForLine,
+    sendMessageToChat: sendMessageToChat,
+    shareTicketToLine: shareTicketToLine,
+    openLineOaChat: openLineOaChat,
+    closeLiffWindow: closeLiffWindow,
+    fetchTicketsFromCloud: fetchTicketsFromCloud,
+    createTicketOnCloud: createTicketOnCloud,
+    updateTicketOnCloud: updateTicketOnCloud,
+    deleteTicketOnCloud: deleteTicketOnCloud,
+    testConnection: testConnection,
+    sendAdminWebhookNotification: sendAdminWebhookNotification
+  };
+})();
+
+</script>
+  <!-- Main JavaScript File -->
+  <script>
+/**
+ * ProService CARE - After-Sales Service Request System
+ * Logic & State Management
+ */
+
+(function () {
+  'use strict';
+
+  // Key for localStorage persistence
+  const STORAGE_KEY = 'proservice_care_tickets_v1';
+  const SESSION_KEY = 'proservice_care_session_id';
+  const STAFF_PIN = '1234'; // เปลี่ยน PIN ได้ที่นี่
+
+  // สร้าง/โหลด Session ID เพื่อระบุว่าเป็นลูกค้าคนไหน
+  function getOrCreateSessionId() {
+    let sid = localStorage.getItem(SESSION_KEY);
+    if (!sid) {
+      sid = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+      localStorage.setItem(SESSION_KEY, sid);
+    }
+    return sid;
+  }
+
+  const SESSION_ID = getOrCreateSessionId();
+
+  // State Management
+  let state = {
+    tickets: [],
+    filterStatus: 'all',
+    searchQuery: '',
+    currentViewingTicketId: null,
+    lastCreatedTicket: null,
+    isStaffMode: false, // false = ลูกค้า, true = ช่าง
+    selectedPhotos: [] // รูปภาพที่เลือก (dataUrl, file, id)
+  };
+
+  // Sample initial data (Empty for live production)
+  const initialSampleTickets = [];
+
+  // DOM Elements Cache
+  const elements = {
+    form: document.getElementById('serviceRequestForm'),
+    customerName: document.getElementById('customerName'),
+    serviceLocation: document.getElementById('serviceLocation'),
+    issueDetail: document.getElementById('issueDetail'),
+    contactPhone: document.getElementById('contactPhone'),
+    preferredDate: document.getElementById('preferredDate'),
+    preferredTime: document.getElementById('preferredTime'),
+    btnSubmit: document.getElementById('btnSubmitRequest'),
+    btnReset: document.getElementById('btnResetForm'),
+    
+    // Photo Upload Elements
+    photoFileInput: document.getElementById('photoFileInput'),
+    photoDropZone: document.getElementById('photoDropZone'),
+    photoUploadPrompt: document.getElementById('photoUploadPrompt'),
+    photoPreviewGrid: document.getElementById('photoPreviewGrid'),
+    
+    // LINE Integration Elements
+    lineUserBanner: document.getElementById('lineUserBanner'),
+    lineUserName: document.getElementById('lineUserName'),
+    lineUserAvatar: document.getElementById('lineUserAvatar'),
+    btnLineSendChat: document.getElementById('btnLineSendChat'),
+    btnLineShare: document.getElementById('btnLineShare'),
+    btnLineContactOa: document.getElementById('btnLineContactOa'),
+    btnLineCloseLiff: document.getElementById('btnLineCloseLiff'),
+    btnDetailLineShare: document.getElementById('btnDetailLineShare'),
+    btnDetailLineOa: document.getElementById('btnDetailLineOa'),
+
+    // LINE Settings Modal
+    btnOpenLineSettings: document.getElementById('btnOpenLineSettings'),
+    lineSettingsModal: document.getElementById('lineSettingsModal'),
+    lineSettingsCloseBtn: document.getElementById('lineSettingsCloseBtn'),
+    btnLineSettingsCancel: document.getElementById('btnLineSettingsCancel'),
+    lineConfigForm: document.getElementById('lineConfigForm'),
+    cfgLiffId: document.getElementById('cfgLiffId'),
+    cfgLineOa: document.getElementById('cfgLineOa'),
+    cfgWebhookUrl: document.getElementById('cfgWebhookUrl'),
+
+    // History Section
+    ticketsContainer: document.getElementById('ticketsContainer'),
+    emptyHistoryState: document.getElementById('emptyHistoryState'),
+    searchHistoryInput: document.getElementById('searchHistoryInput'),
+    btnClearSearch: document.getElementById('btnClearSearch'),
+    filterChips: document.querySelectorAll('.filter-chip'),
+    ticketCountBadge: document.getElementById('ticketCountBadge'),
+    cntAll: document.getElementById('cntAll'),
+    cntPending: document.getElementById('cntPending'),
+    cntScheduled: document.getElementById('cntScheduled'),
+    cntCompleted: document.getElementById('cntCompleted'),
+    btnExportCSV: document.getElementById('btnExportCSV'),
+    btnClearHistory: document.getElementById('btnClearHistory'),
+    historySectionTitle: document.getElementById('historySectionTitle'),
+    historySectionSubtitle: document.getElementById('historySectionSubtitle'),
+    staffRoleBadge: document.getElementById('staffRoleBadge'),
+    btnToggleStaffMode: document.getElementById('btnToggleStaffMode'),
+    staffModeBtnText: document.getElementById('staffModeBtnText'),
+
+    // Staff PIN Modal
+    staffPinModal: document.getElementById('staffPinModal'),
+    staffPinCloseBtn: document.getElementById('staffPinCloseBtn'),
+    btnStaffPinCancel: document.getElementById('btnStaffPinCancel'),
+    staffPinForm: document.getElementById('staffPinForm'),
+    staffPinInput: document.getElementById('staffPinInput'),
+    staffPinError: document.getElementById('staffPinError'),
+
+    // Success Modal Elements
+    successModal: document.getElementById('successModal'),
+    modalCloseBtn: document.getElementById('modalCloseBtn'),
+    btnModalAcknowledge: document.getElementById('btnModalAcknowledge'),
+    btnModalPrint: document.getElementById('btnModalPrint'),
+    modalTicketId: document.getElementById('modalTicketId'),
+    modalSummaryName: document.getElementById('modalSummaryName'),
+    modalSummaryPhone: document.getElementById('modalSummaryPhone'),
+    modalSummaryLocation: document.getElementById('modalSummaryLocation'),
+    modalSummaryIssue: document.getElementById('modalSummaryIssue'),
+    modalSummaryDate: document.getElementById('modalSummaryDate'),
+    modalSummaryTime: document.getElementById('modalSummaryTime'),
+
+    // Detail Modal Elements
+    detailModal: document.getElementById('detailModal'),
+    detailCloseBtn: document.getElementById('detailCloseBtn'),
+    btnDetailClose: document.getElementById('btnDetailClose'),
+    detailTicketId: document.getElementById('detailTicketId'),
+    detailStatusBadge: document.getElementById('detailStatusBadge'),
+    detailContentBody: document.getElementById('detailContentBody'),
+
+    // Mobile Bottom Navigation
+    mNavForm: document.getElementById('mNavForm'),
+    mNavHistory: document.getElementById('mNavHistory'),
+    mNavLineOa: document.getElementById('mNavLineOa'),
+    mNavSettings: document.getElementById('mNavSettings'),
+    mTicketCountBadge: document.getElementById('mTicketCountBadge'),
+
+    // Toast Container
+    toastContainer: document.getElementById('toastContainer')
+  };
+
+  /**
+   * Initialize Application
+   */
+  function init() {
+    loadTicketsFromStorage();
+    setupMinDatePicker();
+    bindEvents();
+    renderTickets();
+    updateCounts();
+    initLineIntegration();
+  }
+
+  /**
+   * Initialize LINE Integration & Profile Fetching
+   */
+  async function initLineIntegration() {
+    if (window.LineService) {
+      try {
+        const lineState = await window.LineService.initLiff();
+        if (lineState && lineState.profile) {
+          if (elements.lineUserBanner) {
+            elements.lineUserBanner.style.display = 'flex';
+          }
+          if (elements.lineUserName) {
+            elements.lineUserName.textContent = lineState.profile.displayName;
+          }
+          if (elements.lineUserAvatar && lineState.profile.pictureUrl) {
+            elements.lineUserAvatar.innerHTML = `<img src="${lineState.profile.pictureUrl}" alt="LINE Profile" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
+          }
+          if (elements.customerName && !elements.customerName.value) {
+            elements.customerName.value = lineState.profile.displayName;
+          }
+        }
+        if (lineState && lineState.isInLineClient) {
+          if (elements.btnLineCloseLiff) {
+            elements.btnLineCloseLiff.style.display = 'inline-flex';
+          }
+        }
+      } catch (err) {
+        console.warn('LINE LIFF initialization skipped or errored:', err);
+      }
+    }
+  }
+
+  // Helper to check if a ticket belongs to current customer
+  function isCustomerTicket(ticket) {
+    if (!ticket) return false;
+    const currentProfile = (window.LineService && window.LineService.getState().profile) || null;
+    if (currentProfile && currentProfile.userId && ticket.lineUserId && ticket.lineUserId === currentProfile.userId) {
+      return true;
+    }
+    return Boolean(ticket.sessionId && ticket.sessionId === SESSION_ID);
+  }
+
+  /**
+   * Load tickets from localStorage (Clean state for customers)
+   */
+  function loadTicketsFromStorage() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        state.tickets = JSON.parse(stored);
+      } else {
+        state.tickets = [];
+        saveTicketsToStorage();
+      }
+    } catch (e) {
+      console.warn('LocalStorage error, using memory fallback:', e);
+      state.tickets = [];
+    }
+  }
+
+  /**
+   * Save tickets state to localStorage
+   */
+  function saveTicketsToStorage() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.tickets));
+    } catch (e) {
+      console.error('Failed to save to localStorage:', e);
+    }
+  }
+
+  /**
+   * Compress image to Canvas and export as JPEG Base64
+   */
+  function compressImage(file, maxDimension = 1024, quality = 0.8) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > maxDimension) {
+              height = Math.round((height * maxDimension) / width);
+              width = maxDimension;
+            }
+          } else {
+            if (height > maxDimension) {
+              width = Math.round((width * maxDimension) / height);
+              height = maxDimension;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          resolve(dataUrl);
+        };
+        img.onerror = (err) => reject(err);
+        img.src = e.target.result;
+      };
+      reader.onerror = (err) => reject(err);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /**
+   * Handle Photo Files Selection
+   */
+  async function handlePhotoFiles(files) {
+    if (!files || files.length === 0) return;
+
+    const remainingSlots = 3 - state.selectedPhotos.length;
+    if (remainingSlots <= 0) {
+      showToast('สามารถแนบรูปภาพได้สูงสุด 3 รูปเท่านั้น', 'warning');
+      return;
+    }
+
+    const filesToProcess = Array.from(files).slice(0, remainingSlots);
+
+    for (const file of filesToProcess) {
+      if (!file.type.startsWith('image/')) {
+        showToast('กรุณาเลือกไฟล์ที่เป็นรูปภาพเท่านั้น', 'warning');
+        continue;
+      }
+
+      try {
+        const compressedDataUrl = await compressImage(file);
+        state.selectedPhotos.push({
+          id: 'photo_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+          dataUrl: compressedDataUrl,
+          name: file.name
+        });
+      } catch (err) {
+        console.error('Image compression error:', err);
+      }
+    }
+
+    renderPhotoPreviews();
+  }
+
+  /**
+   * Render Photo Previews
+   */
+  function renderPhotoPreviews() {
+    if (!elements.photoPreviewGrid || !elements.photoUploadPrompt) return;
+
+    if (state.selectedPhotos.length === 0) {
+      elements.photoUploadPrompt.style.display = 'flex';
+      elements.photoPreviewGrid.style.display = 'none';
+      elements.photoPreviewGrid.innerHTML = '';
+      return;
+    }
+
+    elements.photoUploadPrompt.style.display = 'none';
+    elements.photoPreviewGrid.style.display = 'grid';
+
+    let cardsHtml = state.selectedPhotos.map((photo, idx) => `
+      <div class="photo-preview-card" data-idx="${idx}">
+        <img src="${photo.dataUrl}" alt="รูปถ่ายหน้างาน ${idx + 1}" />
+        <button type="button" class="btn-remove-photo" title="ลบรูปนี้" onclick="window.removeSelectedPhoto(${idx})">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    `).join('');
+
+    if (state.selectedPhotos.length < 3) {
+      cardsHtml += `
+        <div class="photo-add-more-btn" onclick="document.getElementById('photoFileInput').click()">
+          <i class="fa-solid fa-plus" style="font-size: 1.1rem;"></i>
+          <span>เพิ่มรูป (${state.selectedPhotos.length}/3)</span>
+        </div>
+      `;
+    }
+
+    elements.photoPreviewGrid.innerHTML = cardsHtml;
+  }
+
+  window.removeSelectedPhoto = function (index) {
+    if (state.selectedPhotos && state.selectedPhotos[index] !== undefined) {
+      state.selectedPhotos.splice(index, 1);
+      renderPhotoPreviews();
+    }
+  };
+
+  /**
+   * Set minimum date to today so users cannot pick past dates
+   */
+  function setupMinDatePicker() {
+    if (elements.preferredDate) {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      elements.preferredDate.min = `${yyyy}-${mm}-${dd}`;
+    }
+  }
+
+  /**
+   * Format Thai Phone Number (0xx-xxx-xxxx)
+   */
+  function formatThaiPhoneNumber(raw) {
+    const digits = raw.replace(/\D/g, '').slice(0, 10);
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+  }
+
+  /**
+   * Validate Thai 10-digit phone number
+   * Format: Starts with 0 (usually 06, 08, 09 for mobile or 02, 03, 04, 05, 07 for landlines) and has 10 digits
+   */
+  function validateThaiPhone(phoneStr) {
+    const cleanDigits = phoneStr.replace(/\D/g, '');
+    // Thai phone numbers are 10 digits starting with 0
+    return /^0[0-9]{9}$/.test(cleanDigits);
+  }
+
+  /**
+   * Format Date to Thai readable format
+   */
+  function formatThaiDate(dateStr) {
+    if (!dateStr) return '-';
+    try {
+      const date = new Date(dateStr);
+      if (isNaN(date.getTime())) return dateStr;
+      
+      const thaiMonths = [
+        'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.',
+        'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'
+      ];
+      
+      const day = date.getDate();
+      const month = thaiMonths[date.getMonth()];
+      const year = date.getFullYear() + 543; // Buddhist Era
+      
+      return `${day} ${month} ${year}`;
+    } catch (e) {
+      return dateStr;
+    }
+  }
+
+  /**
+   * Format Relative Time Ago (e.g. 5 นาทีที่แล้ว, เมื่อสักครู่)
+   */
+  function timeAgo(isoString) {
+    if (!isoString) return '';
+    const date = new Date(isoString);
+    const now = new Date();
+    const diffSec = Math.floor((now - date) / 1000);
+
+    if (diffSec < 60) return 'เมื่อสักครู่';
+    if (diffSec < 3600) return `${Math.floor(diffSec / 60)} นาทีที่แล้ว`;
+    if (diffSec < 86400) return `${Math.floor(diffSec / 3600)} ชั่วโมงที่แล้ว`;
+    if (diffSec < 604800) return `${Math.floor(diffSec / 86400)} วันที่แล้ว`;
+    return formatThaiDate(isoString);
+  }
+
+  /**
+   * Generate Next Ticket ID
+   */
+  function generateTicketId() {
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    const randomSuffix = Math.floor(100 + Math.random() * 900);
+    return `REQ-${yyyy}${mm}${dd}-${randomSuffix}`;
+  }
+
+  /**
+   * Highlight error on a form group
+   */
+  function setFieldError(fieldId, isError, customMessage) {
+    const group = document.getElementById(`group-${fieldId}`);
+    const errorElem = document.getElementById(`error-${fieldId}`);
+    
+    if (!group) return;
+
+    if (isError) {
+      group.classList.add('has-error');
+      group.classList.add('shake-field');
+      if (customMessage && errorElem) {
+        errorElem.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${customMessage}`;
+      }
+      setTimeout(() => group.classList.remove('shake-field'), 500);
+    } else {
+      group.classList.remove('has-error');
+    }
+  }
+
+  /**
+   * Clear all form validation errors
+   */
+  function clearAllErrors() {
+    ['customerName', 'serviceLocation', 'issueDetail', 'contactPhone', 'preferredDate', 'preferredTime'].forEach(id => {
+      setFieldError(id, false);
+    });
+  }
+
+  /**
+   * Validate entire form
+   */
+  function validateForm() {
+    let isValid = true;
+    let firstInvalidElem = null;
+
+    // 1. Customer Name
+    const nameVal = elements.customerName.value.trim();
+    if (!nameVal) {
+      setFieldError('customerName', true, 'กรุณากรอกชื่อลูกค้า');
+      isValid = false;
+      if (!firstInvalidElem) firstInvalidElem = elements.customerName;
+    } else {
+      setFieldError('customerName', false);
+    }
+
+    // 2. Service Location
+    const locVal = elements.serviceLocation.value.trim();
+    if (!locVal) {
+      setFieldError('serviceLocation', true, 'กรุณากรอกสถานที่หรือที่อยู่หน้างาน');
+      isValid = false;
+      if (!firstInvalidElem) firstInvalidElem = elements.serviceLocation;
+    } else {
+      setFieldError('serviceLocation', false);
+    }
+
+    // 3. Issue Detail
+    const issueVal = elements.issueDetail.value.trim();
+    if (!issueVal) {
+      setFieldError('issueDetail', true, 'กรุณากรอกรายละเอียดปัญหา');
+      isValid = false;
+      if (!firstInvalidElem) firstInvalidElem = elements.issueDetail;
+    } else {
+      setFieldError('issueDetail', false);
+    }
+
+    // 4. Contact Phone
+    const phoneVal = elements.contactPhone.value.trim();
+    if (!phoneVal) {
+      setFieldError('contactPhone', true, 'กรุณากรอกเบอร์ติดต่อกลับ');
+      isValid = false;
+      if (!firstInvalidElem) firstInvalidElem = elements.contactPhone;
+    } else if (!validateThaiPhone(phoneVal)) {
+      setFieldError('contactPhone', true, 'เบอร์โทรต้องเป็นตัวเลข 10 หลัก (ขึ้นต้นด้วย 0 เช่น 08x, 09x, 06x)');
+      isValid = false;
+      if (!firstInvalidElem) firstInvalidElem = elements.contactPhone;
+    } else {
+      setFieldError('contactPhone', false);
+    }
+
+    // 5. Preferred Date
+    const dateVal = elements.preferredDate.value;
+    if (!dateVal) {
+      setFieldError('preferredDate', true, 'กรุณาเลือกวันที่สะดวกให้เข้าไปแก้ไข');
+      isValid = false;
+      if (!firstInvalidElem) firstInvalidElem = elements.preferredDate;
+    } else {
+      setFieldError('preferredDate', false);
+    }
+
+    // 6. Preferred Time
+    const timeVal = elements.preferredTime.value;
+    if (!timeVal) {
+      setFieldError('preferredTime', true, 'กรุณาเลือกช่วงเวลาที่สะดวก');
+      isValid = false;
+      if (!firstInvalidElem) firstInvalidElem = elements.preferredTime;
+    } else {
+      setFieldError('preferredTime', false);
+    }
+
+    if (!isValid && firstInvalidElem) {
+      firstInvalidElem.focus();
+      firstInvalidElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast('กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง', 'error');
+    }
+
+    return isValid;
+  }
+
+  /**
+   * Handle Form Submission
+   */
+  function handleFormSubmit(e) {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    // Show loading state
+    const submitBtn = elements.btnSubmit;
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline-flex';
+    submitBtn.disabled = true;
+
+    // Simulate small processing delay for realistic UX
+    setTimeout(() => {
+      const currentProfile = (window.LineService && window.LineService.getState().profile) || null;
+      const photoUrls = state.selectedPhotos.map(p => p.dataUrl);
+
+      const newTicket = {
+        id: generateTicketId(),
+        customerName: elements.customerName.value.trim(),
+        serviceLocation: elements.serviceLocation.value.trim(),
+        issueDetail: elements.issueDetail.value.trim(),
+        contactPhone: elements.contactPhone.value.trim(),
+        preferredDate: elements.preferredDate.value,
+        preferredTime: elements.preferredTime.value,
+        status: 'รอติดต่อกลับ', // Required default status
+        createdAt: new Date().toISOString(),
+        sessionId: SESSION_ID, // ระบุว่าเป็น ticket ของ session นี้
+        lineUserId: currentProfile ? currentProfile.userId : null,
+        photos: photoUrls,
+        photoUrls: photoUrls
+      };
+
+      state.lastCreatedTicket = newTicket;
+
+      // Add to beginning of ticket list
+      state.tickets.unshift(newTicket);
+      saveTicketsToStorage();
+
+      // Trigger Webhook Notification in background if configured
+      if (window.LineService) {
+        window.LineService.sendAdminWebhookNotification(newTicket);
+      }
+
+      // Reset loading state
+      btnText.style.display = 'inline-flex';
+      btnLoading.style.display = 'none';
+      submitBtn.disabled = false;
+
+      // Show Success Modal with summary
+      showSuccessModal(newTicket);
+
+      // Reset the form & selected photos
+      const currentLineName = (window.LineService && window.LineService.getState().profile) 
+        ? window.LineService.getState().profile.displayName 
+        : '';
+      elements.form.reset();
+      state.selectedPhotos = [];
+      renderPhotoPreviews();
+
+      if (currentLineName) {
+        elements.customerName.value = currentLineName;
+      }
+      clearAllErrors();
+
+      // Refresh list & counts
+      renderTickets();
+      updateCounts();
+
+      showToast('บันทึกคำขอแจ้งซ่อมสำเร็จ!', 'success');
+    }, 450);
+  }
+
+  /**
+   * Show Custom Success Confirmation Modal
+   */
+  function showSuccessModal(ticket) {
+    elements.modalTicketId.textContent = ticket.id;
+    elements.modalSummaryName.textContent = ticket.customerName;
+    elements.modalSummaryPhone.textContent = ticket.contactPhone;
+    elements.modalSummaryLocation.textContent = ticket.serviceLocation;
+    elements.modalSummaryIssue.textContent = ticket.issueDetail;
+    elements.modalSummaryDate.textContent = formatThaiDate(ticket.preferredDate);
+    elements.modalSummaryTime.textContent = ticket.preferredTime;
+
+    elements.successModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  /**
+   * Close Success Modal
+   */
+  function closeSuccessModal() {
+    elements.successModal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  /**
+  /**
+   * Update Progress Tracker in Detail Modal
+   */
+  function updateProgressTracker(status) {
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const c1 = document.getElementById('connector1');
+    const c2 = document.getElementById('connector2');
+
+    if (!step1 || !step2 || !step3) return;
+
+    // Reset all steps
+    [step1, step2, step3].forEach(s => s.classList.remove('completed', 'active'));
+    if (c1) c1.classList.remove('active');
+    if (c2) c2.classList.remove('active');
+
+    step1.classList.add('completed');
+
+    if (status === 'รอติดต่อกลับ') {
+      step1.classList.add('active');
+    } else if (status === 'นัดหมายแล้ว') {
+      step1.classList.add('completed');
+      if (c1) c1.classList.add('active');
+      step2.classList.add('completed', 'active');
+    } else if (status === 'เสร็จสิ้น') {
+      step1.classList.add('completed');
+      if (c1) c1.classList.add('active');
+      step2.classList.add('completed');
+      if (c2) c2.classList.add('active');
+      step3.classList.add('completed', 'active');
+    }
+  }
+
+  /**
+   * Show Ticket Detail Modal
+   */
+  function showTicketDetail(ticketId) {
+    const ticket = state.tickets.find(t => t.id === ticketId);
+    if (!ticket) return;
+
+    // Security check: ลูกค้าเปิดดูได้เฉพาะ ticket ของตัวเองเท่านั้น
+    if (!state.isStaffMode && !isCustomerTicket(ticket)) {
+      showToast('คุณไม่มีสิทธิ์ดูข้อมูลรายการนี้', 'error');
+      return;
+    }
+
+    state.currentViewingTicketId = ticketId;
+    elements.detailTicketId.textContent = `#${ticket.id}`;
+    
+    // Status Badge HTML
+    elements.detailStatusBadge.innerHTML = getStatusBadgeHTML(ticket.status);
+
+    // Detail Body HTML
+    elements.detailContentBody.innerHTML = `
+      <div class="summary-grid">
+        <div class="summary-item">
+          <span class="summary-label">ชื่อลูกค้า:</span>
+          <span class="summary-val">${escapeHTML(ticket.customerName)}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">เบอร์ติดต่อกลับ:</span>
+          <span class="summary-val">${escapeHTML(ticket.contactPhone)}</span>
+        </div>
+        <div class="summary-item full-width">
+          <span class="summary-label">สถานที่ / หน้างาน:</span>
+          <span class="summary-val">${escapeHTML(ticket.serviceLocation)}</span>
+        </div>
+        <div class="summary-item full-width">
+          <span class="summary-label">รายละเอียดปัญหา:</span>
+          <span class="summary-val" style="white-space: pre-line;">${escapeHTML(ticket.issueDetail)}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">วันที่ต้องการให้เข้าตรวจ:</span>
+          <span class="summary-val text-primary-dark">${formatThaiDate(ticket.preferredDate)}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">เวลาที่สะดวก:</span>
+          <span class="summary-val text-primary-dark">${escapeHTML(ticket.preferredTime)}</span>
+        </div>
+        <div class="summary-item full-width">
+          <span class="summary-label">เวลาที่บันทึกข้อมูล:</span>
+          <span class="summary-val" style="font-weight: normal; color: var(--slate-500);">${new Date(ticket.createdAt).toLocaleString('th-TH')} (${timeAgo(ticket.createdAt)})</span>
+        </div>
+        ${(() => {
+          const photos = ticket.photoUrls || ticket.photos || [];
+          if (!photos || photos.length === 0) return '';
+          return `
+            <div class="summary-item full-width" style="margin-top: 8px; border-top: 1px dashed #e2e8f0; padding-top: 10px;">
+              <span class="summary-label"><i class="fa-solid fa-camera"></i> รูปถ่ายหน้างาน (${photos.length} รูป):</span>
+              <div style="display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
+                ${photos.map((url, i) => `
+                  <a href="${url}" target="_blank" rel="noopener noreferrer" style="display: block; width: 84px; height: 84px; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e1; box-shadow: 0 2px 4px rgba(0,0,0,0.06); transition: transform 0.2s;" title="คลิกเพื่อดูรูปขนาดเต็ม">
+                    <img src="${url}" alt="รูปที่ ${i + 1}" style="width: 100%; height: 100%; object-fit: cover;" />
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        })()}
+      </div>
+    `;
+
+    // Update customer progress tracker
+    updateProgressTracker(ticket.status);
+
+    // Show/Hide Staff status modifier based on role
+    const modifierSection = document.getElementById('detailStatusModifierSection');
+    if (modifierSection) {
+      if (state.isStaffMode) {
+        modifierSection.style.display = 'block';
+        document.querySelectorAll('.btn-status-change').forEach(btn => {
+          if (btn.getAttribute('data-newstatus') === ticket.status) {
+            btn.classList.add('active-status-btn');
+          } else {
+            btn.classList.remove('active-status-btn');
+          }
+        });
+      } else {
+        modifierSection.style.display = 'none';
+      }
+    }
+
+    elements.detailModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  /**
+   * Close Detail Modal
+   */
+  function closeDetailModal() {
+    elements.detailModal.style.display = 'none';
+    document.body.style.overflow = '';
+    state.currentViewingTicketId = null;
+  }
+
+  /**
+   * Update Status of a Ticket (Strictly allowed for Staff only)
+   */
+  function updateTicketStatus(ticketId, newStatus) {
+    if (!state.isStaffMode) {
+      showToast('ไม่อนุญาตให้แก้ไข: เฉพาะทีมช่าง/แอดมินเท่านั้นที่มีสิทธิ์เปลี่ยนสถานะ', 'error');
+      return;
+    }
+
+    const ticketIndex = state.tickets.findIndex(t => t.id === ticketId);
+    if (ticketIndex === -1) return;
+
+    state.tickets[ticketIndex].status = newStatus;
+    saveTicketsToStorage();
+    
+    // Update active modal if open
+    if (elements.detailStatusBadge) {
+      elements.detailStatusBadge.innerHTML = getStatusBadgeHTML(newStatus);
+    }
+    
+    // Update tracker & active buttons
+    updateProgressTracker(newStatus);
+    document.querySelectorAll('.btn-status-change').forEach(btn => {
+      if (btn.getAttribute('data-newstatus') === newStatus) {
+        btn.classList.add('active-status-btn');
+      } else {
+        btn.classList.remove('active-status-btn');
+      }
+    });
+
+    renderTickets();
+    updateCounts();
+    showToast(`อัปเดตสถานะเป็น "${newStatus}" เรียบร้อยแล้ว`, 'info');
+  }
+
+  /**
+   * Helper to generate Status Badge HTML
+   */
+  function getStatusBadgeHTML(status) {
+    if (status === 'รอติดต่อกลับ') {
+      return `<span class="status-badge status-pending"><i class="fa-solid fa-hourglass-half"></i> รอติดต่อกลับ</span>`;
+    } else if (status === 'นัดหมายแล้ว') {
+      return `<span class="status-badge status-scheduled"><i class="fa-solid fa-calendar-check"></i> นัดหมายแล้ว</span>`;
+    } else if (status === 'เสร็จสิ้น') {
+      return `<span class="status-badge status-completed"><i class="fa-solid fa-circle-check"></i> เสร็จสิ้น</span>`;
+    } else {
+      return `<span class="status-badge status-pending">${escapeHTML(status)}</span>`;
+    }
+  }
+
+  /**
+   * Render Tickets List
+   */
+  function renderTickets() {
+    const container = elements.ticketsContainer;
+    const emptyState = elements.emptyHistoryState;
+
+    if (!container) return;
+
+    // === Role-based Filter: ลูกค้าเห็นแค่ ticket ของตัวเอง, ช่างเห็นทั้งหมด ===
+    let visibleTickets = state.isStaffMode
+      ? state.tickets
+      : state.tickets.filter(t => isCustomerTicket(t));
+
+    // Filter tickets
+    let filtered = visibleTickets.filter(t => {
+      // Status filter
+      if (state.filterStatus !== 'all' && t.status !== state.filterStatus) {
+        return false;
+      }
+      // Search filter
+      if (state.searchQuery) {
+        const q = state.searchQuery.toLowerCase();
+        const matchName = t.customerName.toLowerCase().includes(q);
+        const matchPhone = t.contactPhone.replace(/\D/g, '').includes(q.replace(/\D/g, ''));
+        const matchId = t.id.toLowerCase().includes(q);
+        const matchLocation = t.serviceLocation.toLowerCase().includes(q);
+        if (!matchName && !matchPhone && !matchId && !matchLocation) {
+          return false;
+        }
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = '';
+      emptyState.style.display = 'flex';
+      return;
+    }
+
+    emptyState.style.display = 'none';
+
+    container.innerHTML = filtered.map(t => {
+      let cardClass = 'status-pending-card';
+      if (t.status === 'นัดหมายแล้ว') cardClass = 'status-scheduled-card';
+      if (t.status === 'เสร็จสิ้น') cardClass = 'status-completed-card';
+
+      return `
+        <article class="ticket-item-card ${cardClass}" data-id="${t.id}">
+          <div class="ticket-header-row">
+            <span class="ticket-code"><i class="fa-solid fa-ticket text-blue"></i> #${escapeHTML(t.id)}</span>
+            <span class="ticket-time-ago"><i class="fa-regular fa-clock"></i> ${timeAgo(t.createdAt)}</span>
+          </div>
+
+          <div class="ticket-body-meta">
+            <div class="ticket-meta-line">
+              <i class="fa-solid fa-user"></i>
+              <span>ชื่อลูกค้า: <strong class="ticket-customer-name">${escapeHTML(t.customerName)}</strong></span>
+            </div>
+            <div class="ticket-meta-line">
+              <i class="fa-solid fa-phone"></i>
+              <span>เบอร์ติดต่อ: <strong>${escapeHTML(t.contactPhone)}</strong></span>
+            </div>
+            <div class="ticket-meta-line">
+              <i class="fa-solid fa-calendar-days"></i>
+              <span>นัดหมาย: <strong>${formatThaiDate(t.preferredDate)}</strong> (${escapeHTML(t.preferredTime)})</span>
+            </div>
+            <div class="ticket-issue-preview">
+              <i class="fa-solid fa-wrench" style="color: var(--slate-400); margin-right: 4px;"></i>
+              <strong>ปัญหา:</strong> ${escapeHTML(t.issueDetail)}
+            </div>
+          </div>
+
+          <div class="ticket-footer-row">
+            <div>
+              ${getStatusBadgeHTML(t.status)}
+            </div>
+            <button type="button" class="btn-ticket-view" onclick="window.viewTicketDetail('${t.id}')">
+              <span>ดูข้อมูล</span> <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  /**
+   * Update live counts for tabs & badges
+   */
+  function updateCounts() {
+    const visibleTickets = state.isStaffMode
+      ? state.tickets
+      : state.tickets.filter(t => isCustomerTicket(t));
+
+    const total = visibleTickets.length;
+    const pending = visibleTickets.filter(t => t.status === 'รอติดต่อกลับ').length;
+    const scheduled = visibleTickets.filter(t => t.status === 'นัดหมายแล้ว').length;
+    const completed = visibleTickets.filter(t => t.status === 'เสร็จสิ้น').length;
+
+    if (elements.ticketCountBadge) elements.ticketCountBadge.textContent = total;
+    if (elements.mTicketCountBadge) elements.mTicketCountBadge.textContent = total;
+    if (elements.cntAll) elements.cntAll.textContent = total;
+    if (elements.cntPending) elements.cntPending.textContent = pending;
+    if (elements.cntScheduled) elements.cntScheduled.textContent = scheduled;
+    if (elements.cntCompleted) elements.cntCompleted.textContent = completed;
+  }
+
+  /**
+   * Show Toast Notification
+   */
+  function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    
+    let icon = 'fa-circle-info';
+    if (type === 'success') icon = 'fa-circle-check';
+    if (type === 'error') icon = 'fa-triangle-exclamation';
+
+    toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${escapeHTML(message)}</span>`;
+    
+    elements.toastContainer.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+      toast.style.transition = 'all 0.3s ease';
+      setTimeout(() => toast.remove(), 300);
+    }, 3500);
+  }
+
+  /**
+   * Export Tickets to CSV
+   */
+  function exportCSV() {
+    if (state.tickets.length === 0) {
+      showToast('ไม่มีข้อมูลสำหรับส่งออก', 'error');
+      return;
+    }
+
+    const headers = ['รหัสใบแจ้งซ่อม', 'ชื่อลูกค้า', 'สถานที่', 'รายละเอียดปัญหา', 'เบอร์ติดต่อกลับ', 'วันที่สะดวก', 'เวลาที่สะดวก', 'สถานะ', 'เวลาที่บันทึก'];
+    const rows = state.tickets.map(t => [
+      `"${t.id}"`,
+      `"${(t.customerName || '').replace(/"/g, '""')}"`,
+      `"${(t.serviceLocation || '').replace(/"/g, '""')}"`,
+      `"${(t.issueDetail || '').replace(/"/g, '""')}"`,
+      `"${t.contactPhone || ''}"`,
+      `"${t.preferredDate || ''}"`,
+      `"${t.preferredTime || ''}"`,
+      `"${t.status || ''}"`,
+      `"${t.createdAt || ''}"`
+    ]);
+
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows.map(r => r.join(','))].join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `Preem_Group_Service_Requests_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showToast('ส่งออกไฟล์ CSV สำเร็จ', 'success');
+  }
+
+  /**
+   * Clear all tickets with confirmation
+   */
+  function clearAllTickets() {
+    if (!state.isStaffMode) {
+      showToast('เฉพาะทีมช่าง/แอดมินเท่านั้นที่มีสิทธิ์ล้างประวัติข้อมูล', 'error');
+      return;
+    }
+
+    if (state.tickets.length === 0) {
+      showToast('ไม่มีประวัติข้อมูล', 'info');
+      return;
+    }
+
+    if (confirm('คุณต้องการล้างประวัติการแจ้งซ่อมทั้งหมดหรือไม่?')) {
+      state.tickets = [];
+      saveTicketsToStorage();
+      renderTickets();
+      updateCounts();
+      showToast('ล้างข้อมูลประวัติเรียบร้อยแล้ว', 'info');
+    }
+  }
+
+  /**
+   * Escape HTML to prevent XSS
+   */
+  function escapeHTML(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  /**
+   * Bind DOM Events
+   */
+  function bindEvents() {
+    // Form Submit
+    elements.form.addEventListener('submit', handleFormSubmit);
+
+    // Form Reset
+    elements.btnReset.addEventListener('click', () => {
+      elements.form.reset();
+      state.selectedPhotos = [];
+      renderPhotoPreviews();
+      clearAllErrors();
+      showToast('ล้างฟอร์มเรียบร้อยแล้ว', 'info');
+    });
+
+    // Photo File Input Change
+    if (elements.photoFileInput) {
+      elements.photoFileInput.addEventListener('change', (e) => {
+        handlePhotoFiles(e.target.files);
+        elements.photoFileInput.value = '';
+      });
+    }
+
+    // Photo Upload Prompt Click & Keyboard
+    if (elements.photoUploadPrompt) {
+      elements.photoUploadPrompt.addEventListener('click', () => {
+        if (elements.photoFileInput) elements.photoFileInput.click();
+      });
+      elements.photoUploadPrompt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (elements.photoFileInput) elements.photoFileInput.click();
+        }
+      });
+    }
+
+    // Photo Drag & Drop on Zone
+    if (elements.photoDropZone) {
+      ['dragenter', 'dragover'].forEach(evt => {
+        elements.photoDropZone.addEventListener(evt, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          elements.photoDropZone.classList.add('dragover');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(evt => {
+        elements.photoDropZone.addEventListener(evt, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          elements.photoDropZone.classList.remove('dragover');
+        });
+      });
+
+      elements.photoDropZone.addEventListener('drop', (e) => {
+        if (e.dataTransfer && e.dataTransfer.files) {
+          handlePhotoFiles(e.dataTransfer.files);
+        }
+      });
+    }
+
+    // Real-time phone formatting & validation check
+    elements.contactPhone.addEventListener('input', (e) => {
+      const formatted = formatThaiPhoneNumber(e.target.value);
+      e.target.value = formatted;
+      
+      const phoneIcon = document.getElementById('phoneValidIcon');
+      if (validateThaiPhone(formatted)) {
+        setFieldError('contactPhone', false);
+        if (phoneIcon) phoneIcon.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--success-500);"></i>`;
+      } else {
+        if (phoneIcon) phoneIcon.innerHTML = `<i class="fa-solid fa-mobile-screen"></i>`;
+      }
+    });
+
+    // Clear field error upon typing
+    ['customerName', 'serviceLocation', 'issueDetail', 'preferredDate', 'preferredTime'].forEach(id => {
+      const elem = elements[id];
+      if (elem) {
+        elem.addEventListener('input', () => setFieldError(id, false));
+        elem.addEventListener('change', () => setFieldError(id, false));
+      }
+    });
+
+    // Location Quick Helper Pills
+    document.querySelectorAll('.location-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const textToInsert = pill.getAttribute('data-insert');
+        elements.serviceLocation.value = textToInsert + elements.serviceLocation.value;
+        elements.serviceLocation.focus();
+        setFieldError('serviceLocation', false);
+      });
+    });
+
+    // Issue Quick Helper Pills
+    document.querySelectorAll('.issue-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const textToInsert = pill.getAttribute('data-insert');
+        if (elements.issueDetail.value) {
+          elements.issueDetail.value = elements.issueDetail.value + ' | ' + textToInsert;
+        } else {
+          elements.issueDetail.value = textToInsert;
+        }
+        elements.issueDetail.focus();
+        setFieldError('issueDetail', false);
+      });
+    });
+
+    // Search filter
+    elements.searchHistoryInput.addEventListener('input', (e) => {
+      state.searchQuery = e.target.value.trim();
+      elements.btnClearSearch.style.display = state.searchQuery ? 'block' : 'none';
+      renderTickets();
+    });
+
+    elements.btnClearSearch.addEventListener('click', () => {
+      elements.searchHistoryInput.value = '';
+      state.searchQuery = '';
+      elements.btnClearSearch.style.display = 'none';
+      renderTickets();
+      elements.searchHistoryInput.focus();
+    });
+
+    // Status Filter Chips
+    elements.filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        elements.filterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        state.filterStatus = chip.getAttribute('data-status');
+        renderTickets();
+      });
+    });
+
+    // Modal Close Buttons
+    elements.modalCloseBtn.addEventListener('click', closeSuccessModal);
+    elements.btnModalAcknowledge.addEventListener('click', closeSuccessModal);
+    elements.btnModalPrint.addEventListener('click', () => {
+      window.print();
+    });
+
+    elements.detailCloseBtn.addEventListener('click', closeDetailModal);
+    elements.btnDetailClose.addEventListener('click', closeDetailModal);
+
+    // Close Modals on clicking background overlay
+    elements.successModal.addEventListener('click', (e) => {
+      if (e.target === elements.successModal) closeSuccessModal();
+    });
+
+    elements.detailModal.addEventListener('click', (e) => {
+      if (e.target === elements.detailModal) closeDetailModal();
+    });
+
+    // Keyboard ESC to close modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSuccessModal();
+        closeDetailModal();
+      }
+    });
+
+    // Status Modifier buttons inside detail modal
+    document.querySelectorAll('.btn-status-change').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const newStatus = btn.getAttribute('data-newstatus');
+        if (state.currentViewingTicketId) {
+          updateTicketStatus(state.currentViewingTicketId, newStatus);
+        }
+      });
+    });
+
+    // Export CSV and Clear History
+    elements.btnExportCSV.addEventListener('click', exportCSV);
+    elements.btnClearHistory.addEventListener('click', clearAllTickets);
+
+    // =========================================================================
+    // LINE Integration Event Handlers
+    // =========================================================================
+
+    // 1. Send Message to current LINE Chat
+    if (elements.btnLineSendChat) {
+      elements.btnLineSendChat.addEventListener('click', async () => {
+        if (!state.lastCreatedTicket) return;
+        if (window.LineService) {
+          const res = await window.LineService.sendMessageToChat(state.lastCreatedTicket);
+          if (res.success) {
+            showToast('ส่งสรุปใบแจ้งซ่อมเข้าแชท LINE สำเร็จ!', 'success');
+          } else {
+            // If failed because not inside in-app LIFF client, fallback to LINE Share
+            showToast('กำลังเปิดหน้าต่างแชร์ข้อความ LINE...', 'info');
+            window.LineService.shareTicketToLine(state.lastCreatedTicket);
+          }
+        }
+      });
+    }
+
+    // 2. Share Ticket to LINE Chat/Group
+    if (elements.btnLineShare) {
+      elements.btnLineShare.addEventListener('click', () => {
+        if (state.lastCreatedTicket && window.LineService) {
+          window.LineService.shareTicketToLine(state.lastCreatedTicket);
+        }
+      });
+    }
+
+    // 3. Contact Admin via LINE OA
+    if (elements.btnLineContactOa) {
+      elements.btnLineContactOa.addEventListener('click', () => {
+        if (window.LineService) {
+          window.LineService.openLineOaChat(state.lastCreatedTicket ? state.lastCreatedTicket.id : '');
+        }
+      });
+    }
+
+    // 4. Close LIFF Window
+    if (elements.btnLineCloseLiff) {
+      elements.btnLineCloseLiff.addEventListener('click', () => {
+        if (window.LineService) {
+          window.LineService.closeLiffWindow();
+        }
+      });
+    }
+
+    // 5. LINE Actions in Detail Modal
+    if (elements.btnDetailLineShare) {
+      elements.btnDetailLineShare.addEventListener('click', () => {
+        const ticket = state.tickets.find(t => t.id === state.currentViewingTicketId);
+        if (ticket && window.LineService) {
+          window.LineService.shareTicketToLine(ticket);
+        }
+      });
+    }
+
+    if (elements.btnDetailLineOa) {
+      elements.btnDetailLineOa.addEventListener('click', () => {
+        if (window.LineService) {
+          window.LineService.openLineOaChat(state.currentViewingTicketId);
+        }
+      });
+    }
+
+    // 6. LINE Settings Modal
+    function openLineSettingsModal() {
+      if (window.LineService) {
+        const cfg = window.LineService.getConfig();
+        if (elements.cfgLiffId) elements.cfgLiffId.value = cfg.liffId || '';
+        if (elements.cfgLineOa) elements.cfgLineOa.value = cfg.lineOaId || '';
+        if (elements.cfgWebhookUrl) elements.cfgWebhookUrl.value = cfg.webhookUrl || '';
+      }
+      if (elements.lineSettingsModal) {
+        elements.lineSettingsModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeLineSettingsModal() {
+      if (elements.lineSettingsModal) {
+        elements.lineSettingsModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    if (elements.btnOpenLineSettings) {
+      elements.btnOpenLineSettings.addEventListener('click', openLineSettingsModal);
+    }
+    if (elements.lineSettingsCloseBtn) {
+      elements.lineSettingsCloseBtn.addEventListener('click', closeLineSettingsModal);
+    }
+    if (elements.btnLineSettingsCancel) {
+      elements.btnLineSettingsCancel.addEventListener('click', closeLineSettingsModal);
+    }
+    if (elements.lineSettingsModal) {
+      elements.lineSettingsModal.addEventListener('click', (e) => {
+        if (e.target === elements.lineSettingsModal) closeLineSettingsModal();
+      });
+    }
+
+    if (elements.lineConfigForm) {
+      elements.lineConfigForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (window.LineService) {
+          window.LineService.saveConfig({
+            liffId: elements.cfgLiffId.value.trim(),
+            lineOaId: elements.cfgLineOa.value.trim(),
+            webhookUrl: elements.cfgWebhookUrl.value.trim()
+          });
+          showToast('บันทึกการตั้งค่า LINE สำเร็จ!', 'success');
+          closeLineSettingsModal();
+          initLineIntegration();
+        }
+      });
+    }
+
+    // =========================================================================
+    // Staff / Technician Mode Handlers
+    // =========================================================================
+    function openStaffPinModal() {
+      if (elements.staffPinInput) elements.staffPinInput.value = '';
+      if (elements.staffPinError) elements.staffPinError.style.display = 'none';
+      if (elements.staffPinModal) {
+        elements.staffPinModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => elements.staffPinInput && elements.staffPinInput.focus(), 150);
+      }
+    }
+
+    function closeStaffPinModal() {
+      if (elements.staffPinModal) {
+        elements.staffPinModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    function setStaffMode(enabled) {
+      state.isStaffMode = enabled;
+      if (enabled) {
+        if (elements.staffRoleBadge) elements.staffRoleBadge.style.display = 'inline-flex';
+        if (elements.staffModeBtnText) elements.staffModeBtnText.textContent = 'ออกจากโหมดช่าง';
+        if (elements.btnExportCSV) elements.btnExportCSV.style.display = 'inline-flex';
+        if (elements.btnClearHistory) elements.btnClearHistory.style.display = 'inline-flex';
+        if (elements.historySectionTitle) elements.historySectionTitle.textContent = 'ประวัติการแจ้งซ่อมทั้งหมด (โหมดทีมช่าง)';
+        if (elements.historySectionSubtitle) elements.historySectionSubtitle.textContent = 'รายการคำขอทั้งหมดในระบบ (สิทธิ์ผู้ดูแล/ทีมช่าง)';
+        showToast('เข้าสู่โหมดทีมช่าง/แอดมิน เรียบร้อยแล้ว', 'success');
+      } else {
+        if (elements.staffRoleBadge) elements.staffRoleBadge.style.display = 'none';
+        if (elements.staffModeBtnText) elements.staffModeBtnText.textContent = 'สำหรับช่าง';
+        if (elements.btnExportCSV) elements.btnExportCSV.style.display = 'none';
+        if (elements.btnClearHistory) elements.btnClearHistory.style.display = 'none';
+        if (elements.historySectionTitle) elements.historySectionTitle.textContent = 'ประวัติการแจ้งซ่อมของฉัน';
+        if (elements.historySectionSubtitle) elements.historySectionSubtitle.textContent = 'รายการที่คุณส่งคำขอไว้ในระบบ';
+        showToast('กลับสู่โหมดลูกค้าทั่วไป', 'info');
+      }
+      renderTickets();
+      updateCounts();
+    }
+
+    if (elements.btnToggleStaffMode) {
+      elements.btnToggleStaffMode.addEventListener('click', () => {
+        if (state.isStaffMode) {
+          setStaffMode(false);
+        } else {
+          openStaffPinModal();
+        }
+      });
+    }
+
+    if (elements.staffPinCloseBtn) elements.staffPinCloseBtn.addEventListener('click', closeStaffPinModal);
+    if (elements.btnStaffPinCancel) elements.btnStaffPinCancel.addEventListener('click', closeStaffPinModal);
+    if (elements.staffPinModal) {
+      elements.staffPinModal.addEventListener('click', (e) => {
+        if (e.target === elements.staffPinModal) closeStaffPinModal();
+      });
+    }
+
+    if (elements.staffPinForm) {
+      elements.staffPinForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const pin = elements.staffPinInput.value.trim();
+        if (pin === STAFF_PIN) {
+          closeStaffPinModal();
+          setStaffMode(true);
+        } else {
+          if (elements.staffPinError) elements.staffPinError.style.display = 'flex';
+          elements.staffPinInput.select();
+          elements.staffPinInput.focus();
+        }
+      });
+    }
+
+    // =========================================================================
+    // Mobile Bottom Navigation Handlers
+    // =========================================================================
+    if (elements.mNavForm) {
+      elements.mNavForm.addEventListener('click', () => {
+        if (elements.mNavForm) elements.mNavForm.classList.add('active');
+        if (elements.mNavHistory) elements.mNavHistory.classList.remove('active');
+      });
+    }
+
+    if (elements.mNavHistory) {
+      elements.mNavHistory.addEventListener('click', () => {
+        if (elements.mNavHistory) elements.mNavHistory.classList.add('active');
+        if (elements.mNavForm) elements.mNavForm.classList.remove('active');
+      });
+    }
+
+    if (elements.mNavLineOa) {
+      elements.mNavLineOa.addEventListener('click', () => {
+        if (window.LineService) {
+          window.LineService.openLineOaChat();
+        }
+      });
+    }
+
+    if (elements.mNavSettings) {
+      elements.mNavSettings.addEventListener('click', openLineSettingsModal);
+    }
+  }
+
+  // Global window hook for inline view buttons
+  window.viewTicketDetail = function (ticketId) {
+    showTicketDetail(ticketId);
+  };
+
+  // Run on DOM Content Loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+
+</script>
+</body>
+</html>
