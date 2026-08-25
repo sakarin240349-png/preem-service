@@ -860,6 +860,137 @@ select.form-control {
   display: flex;
 }
 
+/* ==========================================================================
+   Photo Upload Component
+   ========================================================================== */
+
+.photo-upload-zone {
+  border: 2px dashed rgba(27, 59, 111, 0.22);
+  border-radius: var(--radius-lg);
+  background: rgba(248, 250, 252, 0.7);
+  padding: 16px;
+  text-align: center;
+  transition: var(--transition-normal);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.photo-upload-zone:hover,
+.photo-upload-zone.dragover {
+  border-color: var(--navy-600);
+  background: rgba(241, 245, 249, 0.95);
+  box-shadow: 0 4px 12px rgba(27, 59, 111, 0.08);
+}
+
+.photo-upload-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+}
+
+.photo-upload-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(27, 59, 111, 0.1) 0%, rgba(14, 165, 233, 0.15) 100%);
+  color: var(--navy-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 2px;
+  transition: transform 0.2s ease;
+}
+
+.photo-upload-zone:hover .photo-upload-icon {
+  transform: translateY(-2px) scale(1.05);
+  color: var(--navy-900);
+}
+
+.photo-upload-title {
+  font-size: 0.9rem;
+  color: var(--navy-900);
+}
+
+.photo-upload-subtitle {
+  font-size: 0.76rem;
+  color: var(--slate-500);
+}
+
+.photo-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.photo-preview-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--slate-200);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+.photo-preview-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-preview-card .btn-remove-photo {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.8);
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.photo-preview-card .btn-remove-photo:hover {
+  background: var(--danger-600);
+  transform: scale(1.1);
+}
+
+.photo-add-more-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border: 1.5px dashed var(--slate-300);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--slate-500);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.72rem;
+  gap: 4px;
+}
+
+.photo-add-more-btn:hover {
+  border-color: var(--navy-600);
+  color: var(--navy-800);
+  background: #ffffff;
+}
+
 .has-error .input-icon-right {
   color: var(--danger-500);
 }

@@ -30,34 +30,12 @@
     searchQuery: '',
     currentViewingTicketId: null,
     lastCreatedTicket: null,
-    isStaffMode: false // false = ลูกค้า, true = ช่าง
+    isStaffMode: false, // false = ลูกค้า, true = ช่าง
+    selectedPhotos: [] // รูปภาพที่เลือก (dataUrl, file, id)
   };
 
-  // Sample initial data if storage is empty
-  const initialSampleTickets = [
-    {
-      id: 'REQ-20260819-002',
-      customerName: 'คุณกิตติศักดิ์ เจริญสุข',
-      serviceLocation: 'บริษัท ดิจิทัล อินโนเวชั่น จำกัด อาคารซีพีทาวเวอร์ ชั้น 14 ถนนสีลม แขวงสีลม เขตบางรัก กรุงเทพฯ',
-      issueDetail: 'เครื่องปรับอากาศส่วนกลางมีเสียงดังผิดปกติและมีน้ำหยดบริเวณท่อส่งความเย็น',
-      contactPhone: '089-765-4321',
-      preferredDate: '2026-08-21',
-      preferredTime: '09:00 - 11:30 น. (ช่วงเช้า)',
-      status: 'นัดหมายแล้ว',
-      createdAt: '2026-08-19T10:15:00.000Z'
-    },
-    {
-      id: 'REQ-20260820-001',
-      customerName: 'คุณวรรณภา พงษ์ศิริ',
-      serviceLocation: 'บ้านเลขที่ 88/12 หมู่บ้านเพอร์เฟคพาร์ค ซอยสุขุมวิท 77 แขวงประเวศ เขตประเวศ กรุงเทพฯ',
-      issueDetail: 'ระบบไฟฟ้าในตู้ควบคุมตัดการทำงานอัตโนมัติ (ไฟดับเฉพาะโซนห้องแล็บ)',
-      contactPhone: '081-234-5678',
-      preferredDate: '2026-08-22',
-      preferredTime: '13:30 - 15:00 น. (ช่วงบ่ายต้น)',
-      status: 'รอติดต่อกลับ',
-      createdAt: '2026-08-20T08:30:00.000Z'
-    }
-  ];
+  // Sample initial data (Empty for live production)
+  const initialSampleTickets = [];
 
   // DOM Elements Cache
   const elements = {
@@ -70,6 +48,12 @@
     preferredTime: document.getElementById('preferredTime'),
     btnSubmit: document.getElementById('btnSubmitRequest'),
     btnReset: document.getElementById('btnResetForm'),
+    
+    // Photo Upload Elements
+    photoFileInput: document.getElementById('photoFileInput'),
+    photoDropZone: document.getElementById('photoDropZone'),
+    photoUploadPrompt: document.getElementById('photoUploadPrompt'),
+    photoPreviewGrid: document.getElementById('photoPreviewGrid'),
     
     // LINE Integration Elements
     lineUserBanner: document.getElementById('lineUserBanner'),
@@ -233,6 +217,127 @@
       console.error('Failed to save to localStorage:', e);
     }
   }
+
+  /**
+   * Compress image to Canvas and export as JPEG Base64
+   */
+  function compressImage(file, maxDimension = 1024, quality = 0.8) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > maxDimension) {
+              height = Math.round((height * maxDimension) / width);
+              width = maxDimension;
+            }
+          } else {
+            if (height > maxDimension) {
+              width = Math.round((width * maxDimension) / height);
+              height = maxDimension;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          resolve(dataUrl);
+        };
+        img.onerror = (err) => reject(err);
+        img.src = e.target.result;
+      };
+      reader.onerror = (err) => reject(err);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /**
+   * Handle Photo Files Selection
+   */
+  async function handlePhotoFiles(files) {
+    if (!files || files.length === 0) return;
+
+    const remainingSlots = 3 - state.selectedPhotos.length;
+    if (remainingSlots <= 0) {
+      showToast('สามารถแนบรูปภาพได้สูงสุด 3 รูปเท่านั้น', 'warning');
+      return;
+    }
+
+    const filesToProcess = Array.from(files).slice(0, remainingSlots);
+
+    for (const file of filesToProcess) {
+      if (!file.type.startsWith('image/')) {
+        showToast('กรุณาเลือกไฟล์ที่เป็นรูปภาพเท่านั้น', 'warning');
+        continue;
+      }
+
+      try {
+        const compressedDataUrl = await compressImage(file);
+        state.selectedPhotos.push({
+          id: 'photo_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+          dataUrl: compressedDataUrl,
+          name: file.name
+        });
+      } catch (err) {
+        console.error('Image compression error:', err);
+      }
+    }
+
+    renderPhotoPreviews();
+  }
+
+  /**
+   * Render Photo Previews
+   */
+  function renderPhotoPreviews() {
+    if (!elements.photoPreviewGrid || !elements.photoUploadPrompt) return;
+
+    if (state.selectedPhotos.length === 0) {
+      elements.photoUploadPrompt.style.display = 'flex';
+      elements.photoPreviewGrid.style.display = 'none';
+      elements.photoPreviewGrid.innerHTML = '';
+      return;
+    }
+
+    elements.photoUploadPrompt.style.display = 'none';
+    elements.photoPreviewGrid.style.display = 'grid';
+
+    let cardsHtml = state.selectedPhotos.map((photo, idx) => `
+      <div class="photo-preview-card" data-idx="${idx}">
+        <img src="${photo.dataUrl}" alt="รูปถ่ายหน้างาน ${idx + 1}" />
+        <button type="button" class="btn-remove-photo" title="ลบรูปนี้" onclick="window.removeSelectedPhoto(${idx})">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    `).join('');
+
+    if (state.selectedPhotos.length < 3) {
+      cardsHtml += `
+        <div class="photo-add-more-btn" onclick="document.getElementById('photoFileInput').click()">
+          <i class="fa-solid fa-plus" style="font-size: 1.1rem;"></i>
+          <span>เพิ่มรูป (${state.selectedPhotos.length}/3)</span>
+        </div>
+      `;
+    }
+
+    elements.photoPreviewGrid.innerHTML = cardsHtml;
+  }
+
+  window.removeSelectedPhoto = function (index) {
+    if (state.selectedPhotos && state.selectedPhotos[index] !== undefined) {
+      state.selectedPhotos.splice(index, 1);
+      renderPhotoPreviews();
+    }
+  };
 
   /**
    * Set minimum date to today so users cannot pick past dates
@@ -451,6 +556,8 @@
     // Simulate small processing delay for realistic UX
     setTimeout(() => {
       const currentProfile = (window.LineService && window.LineService.getState().profile) || null;
+      const photoUrls = state.selectedPhotos.map(p => p.dataUrl);
+
       const newTicket = {
         id: generateTicketId(),
         customerName: elements.customerName.value.trim(),
@@ -462,7 +569,9 @@
         status: 'รอติดต่อกลับ', // Required default status
         createdAt: new Date().toISOString(),
         sessionId: SESSION_ID, // ระบุว่าเป็น ticket ของ session นี้
-        lineUserId: currentProfile ? currentProfile.userId : null
+        lineUserId: currentProfile ? currentProfile.userId : null,
+        photos: photoUrls,
+        photoUrls: photoUrls
       };
 
       state.lastCreatedTicket = newTicket;
@@ -484,11 +593,14 @@
       // Show Success Modal with summary
       showSuccessModal(newTicket);
 
-      // Reset the form (keep name if logged in via LINE)
+      // Reset the form & selected photos
       const currentLineName = (window.LineService && window.LineService.getState().profile) 
         ? window.LineService.getState().profile.displayName 
         : '';
       elements.form.reset();
+      state.selectedPhotos = [];
+      renderPhotoPreviews();
+
       if (currentLineName) {
         elements.customerName.value = currentLineName;
       }
@@ -611,6 +723,22 @@
           <span class="summary-label">เวลาที่บันทึกข้อมูล:</span>
           <span class="summary-val" style="font-weight: normal; color: var(--slate-500);">${new Date(ticket.createdAt).toLocaleString('th-TH')} (${timeAgo(ticket.createdAt)})</span>
         </div>
+        ${(() => {
+          const photos = ticket.photoUrls || ticket.photos || [];
+          if (!photos || photos.length === 0) return '';
+          return `
+            <div class="summary-item full-width" style="margin-top: 8px; border-top: 1px dashed #e2e8f0; padding-top: 10px;">
+              <span class="summary-label"><i class="fa-solid fa-camera"></i> รูปถ่ายหน้างาน (${photos.length} รูป):</span>
+              <div style="display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
+                ${photos.map((url, i) => `
+                  <a href="${url}" target="_blank" rel="noopener noreferrer" style="display: block; width: 84px; height: 84px; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e1; box-shadow: 0 2px 4px rgba(0,0,0,0.06); transition: transform 0.2s;" title="คลิกเพื่อดูรูปขนาดเต็ม">
+                    <img src="${url}" alt="รูปที่ ${i + 1}" style="width: 100%; height: 100%; object-fit: cover;" />
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        })()}
       </div>
     `;
 
@@ -909,9 +1037,57 @@
     // Form Reset
     elements.btnReset.addEventListener('click', () => {
       elements.form.reset();
+      state.selectedPhotos = [];
+      renderPhotoPreviews();
       clearAllErrors();
       showToast('ล้างฟอร์มเรียบร้อยแล้ว', 'info');
     });
+
+    // Photo File Input Change
+    if (elements.photoFileInput) {
+      elements.photoFileInput.addEventListener('change', (e) => {
+        handlePhotoFiles(e.target.files);
+        elements.photoFileInput.value = '';
+      });
+    }
+
+    // Photo Upload Prompt Click & Keyboard
+    if (elements.photoUploadPrompt) {
+      elements.photoUploadPrompt.addEventListener('click', () => {
+        if (elements.photoFileInput) elements.photoFileInput.click();
+      });
+      elements.photoUploadPrompt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (elements.photoFileInput) elements.photoFileInput.click();
+        }
+      });
+    }
+
+    // Photo Drag & Drop on Zone
+    if (elements.photoDropZone) {
+      ['dragenter', 'dragover'].forEach(evt => {
+        elements.photoDropZone.addEventListener(evt, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          elements.photoDropZone.classList.add('dragover');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(evt => {
+        elements.photoDropZone.addEventListener(evt, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          elements.photoDropZone.classList.remove('dragover');
+        });
+      });
+
+      elements.photoDropZone.addEventListener('drop', (e) => {
+        if (e.dataTransfer && e.dataTransfer.files) {
+          handlePhotoFiles(e.dataTransfer.files);
+        }
+      });
+    }
 
     // Real-time phone formatting & validation check
     elements.contactPhone.addEventListener('input', (e) => {

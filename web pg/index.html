@@ -289,6 +289,31 @@
           </div>
         </div>
 
+        <!-- Field 6: Photo Uploads (Optional) -->
+        <div class="form-group" id="group-issuePhotos">
+          <label class="form-label" for="photoFileInput">
+            <i class="fa-solid fa-camera form-label-icon"></i>
+            <span>6. แนบรูปถ่ายหน้างาน / อาการชำรุด <span class="optional-tag" style="font-size: 0.8rem; font-weight: normal; color: var(--slate-500);">(ไม่บังคับ, สูงสุด 3 รูป)</span></span>
+          </label>
+          
+          <div class="photo-upload-zone" id="photoDropZone">
+            <input 
+              type="file" 
+              id="photoFileInput" 
+              accept="image/*" 
+              multiple 
+              style="display: none;"
+            >
+            <div class="photo-upload-prompt" id="photoUploadPrompt" role="button" tabindex="0">
+              <div class="photo-upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+              <p class="photo-upload-title"><strong>แตะเพื่อถ่ายภาพ</strong> หรือเลือกรูปจากคลังภาพ</p>
+              <span class="photo-upload-subtitle">รองรับไฟล์ JPG, PNG, WEBP (สูงสุด 3 รูป)</span>
+            </div>
+            <div class="photo-preview-grid" id="photoPreviewGrid" style="display: none;"></div>
+          </div>
+          <p class="field-hint"><i class="fa-solid fa-circle-info"></i> ระบบจะช่วยย่อขนาดรูปภาพให้อัตโนมัติ เพื่อให้ส่งได้รวดเร็ว</p>
+        </div>
+
         <!-- Submit Button Area -->
         <div class="form-action-area">
           <button type="submit" id="btnSubmitRequest" class="btn-submit">

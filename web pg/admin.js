@@ -92,6 +92,8 @@
     actionStatusSelect: document.getElementById('actionStatusSelect'),
     actionTechSelect: document.getElementById('actionTechSelect'),
     actionAdminNotes: document.getElementById('actionAdminNotes'),
+    actionPhotosContainer: document.getElementById('actionPhotosContainer'),
+    actionPhotosGallery: document.getElementById('actionPhotosGallery'),
     btnSaveTicketAction: document.getElementById('btnSaveTicketAction'),
 
     // Technicians Tab
@@ -140,7 +142,7 @@
     try {
       const savedTickets = localStorage.getItem(STORAGE_KEY_TICKETS);
       if (savedTickets) {
-        state.tickets = JSON.parse(savedTickets);
+        state.tickets = JSON.parse(savedTickets).filter(t => !String(t.id || t.ticketId || '').startsWith('REQ-TEST'));
       } else {
         state.tickets = [];
       }
@@ -194,31 +196,39 @@
       const result = await window.LineService.fetchTicketsFromCloud();
 
       if (result.success && Array.isArray(result.tickets)) {
-        // Merge cloud tickets
-        const cloudTickets = result.tickets.map(ct => {
-          // Find matching technician ID if assignedTech is not explicitly saved
-          let techId = ct.assignedTech || '';
-          if (!techId && ct.technician && ct.technician !== '-') {
-            const matched = state.technicians.find(t => t.name === ct.technician);
-            if (matched) techId = matched.id;
-          }
+        const cloudTickets = result.tickets
+          .filter(ct => {
+            const tid = String(ct.id || ct.ticketId || '');
+            return !tid.startsWith('REQ-TEST');
+          })
+          .map(ct => {
+            // Find matching technician ID if assignedTech is not explicitly saved
+            let techId = ct.assignedTech || '';
+            if (!techId && ct.technician && ct.technician !== '-') {
+              const matched = state.technicians.find(t => t.name === ct.technician);
+              if (matched) techId = matched.id;
+            }
 
-          return {
-            id: ct.id || ct.ticketId,
-            customerName: ct.customerName || '-',
-            contactPhone: ct.contactPhone || '-',
-            serviceLocation: ct.serviceLocation || '-',
-            issueDetail: ct.issueDetail || '-',
-            preferredDate: ct.preferredDate || '',
-            preferredTime: ct.preferredTime || '',
-            status: ct.status || 'รอติดต่อกลับ',
-            assignedTech: techId,
-            assignedTechName: ct.technician || (techId ? (state.technicians.find(t => t.id === techId)?.name || '') : ''),
-            adminNotes: ct.adminNotes || '',
-            createdAt: ct.createdAt || new Date().toISOString(),
-            lineUserId: ct.lineUserId || null
-          };
-        });
+            const photoUrls = Array.isArray(ct.photoUrls) ? ct.photoUrls : (ct.photoUrls ? String(ct.photoUrls).split(',').map(s => s.trim()).filter(Boolean) : []);
+
+            return {
+              id: ct.id || ct.ticketId,
+              customerName: ct.customerName || '-',
+              contactPhone: ct.contactPhone || '-',
+              serviceLocation: ct.serviceLocation || '-',
+              issueDetail: ct.issueDetail || '-',
+              preferredDate: ct.preferredDate || '',
+              preferredTime: ct.preferredTime || '',
+              status: ct.status || 'รอติดต่อกลับ',
+              assignedTech: techId,
+              assignedTechName: ct.technician || (techId ? (state.technicians.find(t => t.id === techId)?.name || '') : ''),
+              adminNotes: ct.adminNotes || '',
+              createdAt: ct.createdAt || new Date().toISOString(),
+              lineUserId: ct.lineUserId || null,
+              photoUrls: photoUrls,
+              photos: photoUrls
+            };
+          });
 
         state.tickets = cloudTickets;
         saveTickets();
@@ -437,6 +447,11 @@
         ? `<span class="tech-assigned-tag"><i class="fa-solid fa-user-check"></i> ${escapeHTML(t.assignedTechName)}</span>`
         : `<span class="tech-unassigned-tag"><i class="fa-regular fa-clock"></i> ยังไม่มอบหมาย</span>`;
 
+      const photoCount = (t.photoUrls && t.photoUrls.length) || (t.photos && t.photos.length) || 0;
+      const photoBadge = photoCount > 0 
+        ? `<div style="margin-top: 4px;"><span class="admin-photo-badge" style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; padding: 2px 7px; border-radius: 20px; background: rgba(14, 165, 233, 0.12); color: #0284c7; font-weight: 600; cursor: pointer;" onclick="window.adminManageTicket('${t.id}')"><i class="fa-solid fa-camera"></i> ${photoCount} รูป</span></div>` 
+        : '';
+
       return `
         <tr data-id="${t.id}">
           <td class="ticket-id-cell">#${escapeHTML(t.id)}</td>
@@ -453,6 +468,7 @@
             <div style="max-width: 240px; font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHTML(t.issueDetail)}">
               ${escapeHTML(t.issueDetail)}
             </div>
+            ${photoBadge}
           </td>
           <td>
             <div style="font-size: 0.84rem; font-weight: 600; color: var(--navy-800);">${formatThaiDate(t.preferredDate)}</div>
@@ -530,6 +546,22 @@
     dom.actionStatusSelect.value = ticket.status || 'รอติดต่อกลับ';
     dom.actionTechSelect.value = ticket.assignedTech || '';
     dom.actionAdminNotes.value = ticket.adminNotes || '';
+
+    // Render photos in action modal
+    const photos = ticket.photoUrls || ticket.photos || [];
+    if (dom.actionPhotosContainer && dom.actionPhotosGallery) {
+      if (photos.length > 0) {
+        dom.actionPhotosContainer.style.display = 'block';
+        dom.actionPhotosGallery.innerHTML = photos.map((url, i) => `
+          <a href="${url}" target="_blank" rel="noopener noreferrer" style="display: block; width: 80px; height: 80px; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e1; box-shadow: 0 2px 4px rgba(0,0,0,0.06); transition: transform 0.2s;" title="คลิกเพื่อดูรูปขนาดเต็ม">
+            <img src="${url}" alt="รูปที่ ${i + 1}" style="width: 100%; height: 100%; object-fit: cover;" />
+          </a>
+        `).join('');
+      } else {
+        dom.actionPhotosContainer.style.display = 'none';
+        dom.actionPhotosGallery.innerHTML = '';
+      }
+    }
 
     dom.modalAction.style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -638,6 +670,22 @@
             <div class="job-sheet-box-title"><i class="fa-solid fa-clipboard-check"></i> บันทึกเจ้าหน้าที่</div>
             <div style="font-size: 0.9rem;">${escapeHTML(ticket.adminNotes || '-')}</div>
           </div>
+          ${(() => {
+            const pList = ticket.photoUrls || ticket.photos || [];
+            if (!pList || pList.length === 0) return '';
+            return `
+              <div class="job-sheet-box full-width">
+                <div class="job-sheet-box-title"><i class="fa-solid fa-camera"></i> ภาพถ่ายประกอบหน้างาน (${pList.length} รูป)</div>
+                <div style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap;">
+                  ${pList.map((url, i) => `
+                    <div style="width: 110px; height: 110px; border-radius: 6px; overflow: hidden; border: 1px solid #cbd5e1;">
+                      <img src="${url}" alt="รูปหน้างาน ${i + 1}" style="width: 100%; height: 100%; object-fit: cover;" />
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          })()}
         </div>
 
         <div style="margin-top: 24px; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 14px; background: #f8fafc;">
