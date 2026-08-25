@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบแจ้งซ่อมและบริการหลังการขาย | Preem Group</title>
+  <meta name="description" content="ระบบแจ้งซ่อมและบริการหลังการขายออนไลน์ Preem Group สะดวก รวดเร็ว พร้อมทีมงานช่างมืออาชีพติดต่อกลับในเวลาทำการ 9.00-16.30 น.">
+  
+  <!-- Google Fonts: Prompt, Sarabun & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- LINE LIFF SDK 2.x -->
+  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Ambient Liquid Glass Mesh Orbs -->
+  <div class="liquid-bg-container" aria-hidden="true">
+    <div class="liquid-orb liquid-orb-1"></div>
+    <div class="liquid-orb liquid-orb-2"></div>
+    <div class="liquid-orb liquid-orb-3"></div>
+    <div class="liquid-orb liquid-orb-4"></div>
+  </div>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-announcement" aria-label="เวลาทำการ">
+    <div class="container top-bar-content">
+      <div class="operating-hours">
+        <i class="fa-regular fa-clock"></i>
+        <span>เวลาทำการฝ่ายบริการ: จันทร์ - เสาร์ <strong>09:00 - 16:30 น.</strong></span>
+      </div>
+      <div class="quick-contact">
+        <span class="hotline-badge"><i class="fa-solid fa-headset"></i> สายด่วนบริการลูกค้า <strong>02-123-4567</strong></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header">
+    <div class="container header-content">
+      <div class="brand-logo">
+        <div class="logo-icon-wrapper">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Preem Group</span>
+          <span class="brand-subtitle">ศูนย์แจ้งซ่อมและบริการหลังการขาย</span>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="#request-form-section" class="nav-link active"><i class="fa-solid fa-file-circle-plus"></i> แจ้งซ่อมใหม่</a>
+        <a href="#history-section" class="nav-link"><i class="fa-solid fa-list-check"></i> ประวัติคำขอ (<span id="ticketCountBadge">0</span>)</a>
+        <button type="button" id="btnOpenLineSettings" class="btn-header-setting" title="ตั้งค่าเชื่อมต่อ LINE">
+          <i class="fa-brands fa-line" style="color: #06C755; font-size: 1.1rem;"></i> <span>ตั้งค่า LINE</span>
+        </button>
+        <a href="admin.html" class="btn-header-setting" title="เข้าสู่ระบบจัดการหลังบ้าน" style="color: var(--navy-900); text-decoration: none;">
+          <i class="fa-solid fa-user-shield text-blue"></i> <span>ระบบหลังบ้าน</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section with Trust Badges -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <i class="fa-solid fa-shield-halved"></i> มาตรฐานบริการหลังการขายระดับมืออาชีพ
+        </div>
+        <h1 class="hero-title">แจ้งปัญหาการใช้งาน & บริการซ่อมบำรุง</h1>
+        <p class="hero-desc">
+          กรอกข้อมูลรายละเอียดปัญหาของท่าน เจ้าหน้าที่ฝ่ายบริการและทีมช่างผู้เชี่ยวชาญพร้อมตรวจสอบและประสานงานติดต่อกลับเพื่อยืนยันนัดหมายในเวลาทำการ
+        </p>
+        
+        <!-- Trust Feature Cards -->
+        <div class="trust-features">
+          <div class="trust-pill">
+            <i class="fa-solid fa-bolt-lightning text-amber"></i>
+            <span>ติดต่อกลับในเวลาทำการ 9.00-16.30 น.</span>
+          </div>
+          <div class="trust-pill">
+            <i class="fa-solid fa-user-gear text-blue"></i>
+            <span>ทีมช่างผู้ชำนาญการเฉพาะทาง</span>
+          </div>
+          <div class="trust-pill">
+            <i class="fa-solid fa-award text-emerald"></i>
+            <span>รับประกันงานซ่อมและอะไหล่แท้</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main class="container main-content-wrapper">
+    
+    <!-- Left / Top: Service Request Form -->
+    <section id="request-form-section" class="service-card form-section-card">
+      <div class="card-header">
+        <div class="header-icon-box">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </div>
+        <div>
+          <h2 class="card-title">แบบฟอร์มแจ้งซ่อม / บริการหลังการขาย</h2>
+          <p class="card-subtitle">กรุณากรอกข้อมูลให้ครบถ้วนทุกช่องเพื่อความรวดเร็วในการให้บริการ</p>
+        </div>
+      </div>
+
+      <form id="serviceRequestForm" class="request-form" novalidate>
+        
+        <!-- LINE Profile Auto-detection Banner -->
+        <div id="lineUserBanner" class="line-user-banner" style="display: none;">
+          <div class="line-user-info">
+            <div class="line-user-avatar" id="lineUserAvatar">
+              <i class="fa-brands fa-line"></i>
+            </div>
+            <div class="line-user-text">
+              <span class="line-user-title"><i class="fa-brands fa-line"></i> เข้าใช้งานผ่าน LINE</span>
+              <span class="line-user-name" id="lineUserName">ผู้ใช้ LINE</span>
+            </div>
+          </div>
+          <div class="line-connected-badge">
+            <i class="fa-solid fa-circle-check"></i> ดึงชื่อให้อัตโนมัติ
+          </div>
+        </div>
+
+        <!-- Field 1: Customer Name -->
+        <div class="form-group" id="group-customerName">
+          <label for="customerName" class="form-label">
+            <i class="fa-solid fa-user form-label-icon"></i>
+            <span>1. ชื่อลูกค้า <span class="required-star">*</span></span>
+          </label>
+          <div class="input-wrapper">
+            <input 
+              type="text" 
+              id="customerName" 
+              name="customerName" 
+              class="form-control" 
+              placeholder="ตัวอย่าง: คุณสมชาย ใจดี" 
+              required
+              autocomplete="name"
+            >
+            <span class="input-icon-right"><i class="fa-solid fa-circle-user"></i></span>
+          </div>
+          <p class="error-message" id="error-customerName">
+            <i class="fa-solid fa-circle-exclamation"></i> กรุณากรอกชื่อลูกค้า
+          </p>
+        </div>
+
+        <!-- Field 2: Location -->
+        <div class="form-group" id="group-serviceLocation">
+          <label for="serviceLocation" class="form-label">
+            <i class="fa-solid fa-location-dot form-label-icon"></i>
+            <span>2. สถานที่ / หน้างาน <span class="required-star">*</span></span>
+          </label>
+          
+          <!-- Quick location helper pills -->
+          <div class="quick-helpers">
+            <span class="helper-label">ประเภทสถานที่:</span>
+            <button type="button" class="quick-pill location-pill" data-insert="บ้านพักอาศัย / ทาวน์โฮม ">บ้านพัก</button>
+            <button type="button" class="quick-pill location-pill" data-insert="คอนโดมิเนียม อาคาร/ห้อง ">คอนโด</button>
+            <button type="button" class="quick-pill location-pill" data-insert="สำนักงาน / บริษัท ">ออฟฟิศ</button>
+            <button type="button" class="quick-pill location-pill" data-insert="หน้าร้านค้า / โชว์รูม ">หน้าร้าน</button>
+            <button type="button" class="quick-pill location-pill" data-insert="โรงงาน / คลังสินค้า ">โรงงาน</button>
+          </div>
+
+          <div class="input-wrapper">
+            <textarea 
+              id="serviceLocation" 
+              name="serviceLocation" 
+              class="form-control textarea-location" 
+              rows="3" 
+              placeholder="ระบุที่อยู่หน้างาน เช่น บ้านเลขที่, ซอย, ถนน, แขวง/ตำบล, เขต/อำเภอ, จังหวัด" 
+              required
+            ></textarea>
+          </div>
+          <p class="error-message" id="error-serviceLocation">
+            <i class="fa-solid fa-circle-exclamation"></i> กรุณากรอกสถานที่หรือที่อยู่หน้างาน
+          </p>
+        </div>
+
+        <!-- Field 3: Issue Description -->
+        <div class="form-group" id="group-issueDetail">
+          <label for="issueDetail" class="form-label">
+            <i class="fa-solid fa-circle-question form-label-icon"></i>
+            <span>3. รายละเอียดปัญหา <span class="required-star">*</span></span>
+          </label>
+
+          <!-- Quick issue template pills -->
+          <div class="quick-helpers">
+            <span class="helper-label">อาการเบื้องต้น:</span>
+            <button type="button" class="quick-pill issue-pill" data-insert="เครื่องเปิดไม่ติด / ไฟไม่เข้า ">ไฟไม่เข้า</button>
+            <button type="button" class="quick-pill issue-pill" data-insert="เครื่องปรับอากาศไม่เย็น / มีน้ำหยด ">แอร์ไม่เย็น</button>
+            <button type="button" class="quick-pill issue-pill" data-insert="มีเสียงดังผิดปกติขณะทำงาน ">เสียงผิดปกติ</button>
+            <button type="button" class="quick-pill issue-pill" data-insert="อุปกรณ์ชำรุด แตกหัก หรือหลุดหลวม ">อุปกรณ์ชำรุด</button>
+            <button type="button" class="quick-pill issue-pill" data-insert="ระบบแจ้งเตือน Error Code ขึ้นหน้าจอ ">ขึ้น Error</button>
+          </div>
+
+          <div class="input-wrapper">
+            <textarea 
+              id="issueDetail" 
+              name="issueDetail" 
+              class="form-control textarea-issue" 
+              rows="4" 
+              placeholder="อธิบายรายละเอียดปัญหา อาการเสีย หรือข้อบกพร่องที่พบอย่างชัดเจน" 
+              required
+            ></textarea>
+          </div>
+          <p class="error-message" id="error-issueDetail">
+            <i class="fa-solid fa-circle-exclamation"></i> กรุณากรอกรายละเอียดปัญหา
+          </p>
+        </div>
+
+        <!-- Field 4: Contact Phone -->
+        <div class="form-group" id="group-contactPhone">
+          <label for="contactPhone" class="form-label">
+            <i class="fa-solid fa-phone form-label-icon"></i>
+            <span>4. เบอร์ติดต่อกลับ (เบอร์โทร 10 หลัก) <span class="required-star">*</span></span>
+          </label>
+          <div class="input-wrapper">
+            <input 
+              type="tel" 
+              id="contactPhone" 
+              name="contactPhone" 
+              class="form-control" 
+              placeholder="08X-XXX-XXXX หรือ 09X-XXX-XXXX" 
+              maxlength="12" 
+              required
+              autocomplete="tel"
+            >
+            <span class="input-icon-right" id="phoneValidIcon"><i class="fa-solid fa-mobile-screen"></i></span>
+          </div>
+          <p class="field-hint"><i class="fa-solid fa-circle-info"></i> กรอกเบอร์มือถือไทย 10 หลัก (เช่น 0812345678)</p>
+          <p class="error-message" id="error-contactPhone">
+            <i class="fa-solid fa-circle-exclamation"></i> กรุณากรอกเบอร์โทรศัพท์มือถือ 10 หลักให้ถูกต้อง (ขึ้นต้นด้วย 0)
+          </p>
+        </div>
+
+        <!-- Field 5: Preferred Date & Time -->
+        <div class="form-row-2col">
+          <!-- 5.1 Preferred Date -->
+          <div class="form-group" id="group-preferredDate">
+            <label for="preferredDate" class="form-label">
+              <i class="fa-solid fa-calendar-day form-label-icon"></i>
+              <span>5.1 วันที่สะดวกให้เข้าไปแก้ไข <span class="required-star">*</span></span>
+            </label>
+            <div class="input-wrapper">
+              <input 
+                type="date" 
+                id="preferredDate" 
+                name="preferredDate" 
+                class="form-control" 
+                required
+              >
+            </div>
+            <p class="error-message" id="error-preferredDate">
+              <i class="fa-solid fa-circle-exclamation"></i> กรุณาเลือกวันที่สะดวกให้เข้าไปแก้ไข
+            </p>
+          </div>
+
+          <!-- 5.2 Preferred Time -->
+          <div class="form-group" id="group-preferredTime">
+            <label for="preferredTime" class="form-label">
+              <i class="fa-solid fa-clock form-label-icon"></i>
+              <span>5.2 เวลาที่สะดวกให้เข้าไปแก้ไข <span class="required-star">*</span></span>
+            </label>
+            <div class="input-wrapper">
+              <select id="preferredTime" name="preferredTime" class="form-control" required>
+                <option value="" disabled selected>-- เลือกช่วงเวลา --</option>
+                <option value="09:00 - 11:30 น. (ช่วงเช้า)">09:00 - 11:30 น. (ช่วงเช้า)</option>
+                <option value="11:30 - 13:30 น. (ช่วงเที่ยง)">11:30 - 13:30 น. (ช่วงเที่ยง)</option>
+                <option value="13:30 - 15:00 น. (ช่วงบ่ายต้น)">13:30 - 15:00 น. (ช่วงบ่ายต้น)</option>
+                <option value="15:00 - 16:30 น. (ช่วงบ่ายแก่)">15:00 - 16:30 น. (ช่วงบ่ายแก่)</option>
+                <option value="สะดวกตลอดเวลาทำการ (09:00 - 16:30 น.)">สะดวกตลอดเวลาทำการ (09:00 - 16:30 น.)</option>
+              </select>
+              <span class="input-icon-right"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <p class="error-message" id="error-preferredTime">
+              <i class="fa-solid fa-circle-exclamation"></i> กรุณาเลือกช่วงเวลาที่สะดวก
+            </p>
+          </div>
+        </div>
+
+        <!-- Submit Button Area -->
+        <div class="form-action-area">
+          <button type="submit" id="btnSubmitRequest" class="btn-submit">
+            <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> ส่งข้อมูลแจ้งซ่อม</span>
+            <span class="btn-loading" style="display: none;"><i class="fa-solid fa-circle-notch fa-spin"></i> กำลังส่งข้อมูล...</span>
+          </button>
+          <button type="button" id="btnResetForm" class="btn-reset">
+            <i class="fa-solid fa-rotate-left"></i> เคลียร์ฟอร์ม
+          </button>
+        </div>
+        
+        <p class="privacy-note">
+          <i class="fa-solid fa-lock"></i> ข้อมูลของท่านจะถูกเก็บรักษาอย่างปลอดภัยเพื่อการประสานงานบริการเท่านั้น
+        </p>
+
+      </form>
+    </section>
+
+    <!-- Right / Bottom: Request History & Live Status Tracking -->
+    <section id="history-section" class="service-card history-section-card">
+      <div class="card-header history-header">
+        <div class="header-icon-box success-icon-box">
+          <i class="fa-solid fa-clipboard-list"></i>
+        </div>
+        <div class="history-title-area">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <h2 class="card-title" id="historySectionTitle">ประวัติการแจ้งซ่อมของฉัน</h2>
+            <span id="staffRoleBadge" class="status-badge" style="display: none; background: #e0e7ff; color: #3730a3; font-size: 0.75rem; padding: 2px 8px;">
+              <i class="fa-solid fa-shield-halved"></i> โหมดช่าง/แอดมิน
+            </span>
+          </div>
+          <p class="card-subtitle" id="historySectionSubtitle">รายการที่คุณส่งคำขอไว้ในระบบ</p>
+        </div>
+        <div class="history-actions">
+          <button type="button" id="btnToggleStaffMode" class="btn-secondary-sm" title="เข้าสู่ระบบสำหรับช่าง/แอดมิน">
+            <i class="fa-solid fa-user-shield"></i> <span id="staffModeBtnText">สำหรับช่าง</span>
+          </button>
+          <button type="button" id="btnExportCSV" class="btn-secondary-sm" title="ส่งออกข้อมูลเป็น CSV" style="display: none;">
+            <i class="fa-solid fa-file-arrow-down"></i> <span class="action-btn-text">ส่งออก</span>
+          </button>
+          <button type="button" id="btnClearHistory" class="btn-secondary-sm text-danger" title="ล้างประวัติ" style="display: none;">
+            <i class="fa-solid fa-trash-can"></i> <span class="action-btn-text">ล้าง</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter and Search Toolbar -->
+      <div class="history-toolbar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input 
+            type="text" 
+            id="searchHistoryInput" 
+            placeholder="ค้นหาชื่อลูกค้า, เบอร์โทร, รหัสคำขอ..." 
+            class="search-input"
+          >
+          <button type="button" id="btnClearSearch" class="btn-clear-search" style="display: none;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="filter-status-group">
+          <button type="button" class="filter-chip active" data-status="all">ทั้งหมด (<span id="cntAll">0</span>)</button>
+          <button type="button" class="filter-chip" data-status="รอติดต่อกลับ">รอติดต่อกลับ (<span id="cntPending">0</span>)</button>
+          <button type="button" class="filter-chip" data-status="นัดหมายแล้ว">นัดหมายแล้ว (<span id="cntScheduled">0</span>)</button>
+          <button type="button" class="filter-chip" data-status="เสร็จสิ้น">เสร็จสิ้น (<span id="cntCompleted">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Tickets Container (Responsive Cards & Table View) -->
+      <div id="ticketsContainer" class="tickets-container">
+        <!-- Will be dynamically populated by JavaScript -->
+      </div>
+
+      <!-- Empty State View -->
+      <div id="emptyHistoryState" class="empty-state" style="display: none;">
+        <div class="empty-icon-wrap">
+          <i class="fa-solid fa-folder-open"></i>
+        </div>
+        <h3 class="empty-title">ยังไม่มีประวัติการแจ้งซ่อม</h3>
+        <p class="empty-desc">เมื่อท่านส่งแบบฟอร์มแจ้งปัญหา รายการจะถูกบันทึกและแสดงที่นี่ทันที</p>
+        <a href="#request-form-section" class="btn-empty-action"><i class="fa-solid fa-plus"></i> แจ้งซ่อมรายการแรก</a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <p>© 2026 Preem Group - ระบบแจ้งซ่อมและบริการหลังการขาย</p>
+      <p class="footer-subtext">เวลาทำการ: วันจันทร์ - เสาร์ เวลา 09:00 - 16:30 น. (หยุดวันอาทิตย์และวันหยุดนักขัตฤกษ์)</p>
+    </div>
+  </footer>
+
+  <!-- Modal: Success Confirmation Popup -->
+  <div id="successModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-accent-bar"></div>
+      
+      <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="ปิดหน้าต่าง">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-body">
+        <!-- Animated Success Checkmark Icon -->
+        <div class="success-animation-wrap">
+          <div class="success-circle">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <div class="sparkle-ring"></div>
+        </div>
+
+        <div class="ticket-pill-badge">
+          <i class="fa-solid fa-hashtag"></i> รหัสแจ้งซ่อม: <strong id="modalTicketId">REQ-20260820-001</strong>
+        </div>
+
+        <h3 id="modalTitle" class="modal-title">ส่งข้อมูลแจ้งซ่อมเรียบร้อยแล้ว!</h3>
+
+        <!-- The exact requested automated Thai response message -->
+        <div class="official-reply-box">
+          <div class="reply-quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+          <p class="reply-text">
+            "ขอบคุณที่แจ้งปัญหา ทางบริษัทยินดีบริการ และจะติดต่อกลับไปในเวลาทำการ 9.00-16.30 น. ทางบริษัทจะทำการนัดวันและเวลาอีกครั้ง ขอบคุณครับ"
+          </p>
+        </div>
+
+        <!-- Summary of submitted request -->
+        <div class="submitted-summary-card">
+          <h4 class="summary-card-title"><i class="fa-solid fa-receipt"></i> ข้อมูลสรุปการแจ้งซ่อม</h4>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-label">ชื่อลูกค้า:</span>
+              <span class="summary-val" id="modalSummaryName">-</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">เบอร์ติดต่อกลับ:</span>
+              <span class="summary-val" id="modalSummaryPhone">-</span>
+            </div>
+            <div class="summary-item full-width">
+              <span class="summary-label">สถานที่ / หน้างาน:</span>
+              <span class="summary-val" id="modalSummaryLocation">-</span>
+            </div>
+            <div class="summary-item full-width">
+              <span class="summary-label">รายละเอียดปัญหา:</span>
+              <span class="summary-val" id="modalSummaryIssue">-</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">วันที่สะดวก:</span>
+              <span class="summary-val text-primary-dark" id="modalSummaryDate">-</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">เวลาที่สะดวก:</span>
+              <span class="summary-val text-primary-dark" id="modalSummaryTime">-</span>
+            </div>
+            <div class="summary-item full-width">
+              <span class="summary-label">สถานะปัจจุบัน:</span>
+              <span class="status-badge status-pending"><i class="fa-solid fa-hourglass-half fa-spin"></i> รอติดต่อกลับ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LINE Actions Area -->
+        <div class="line-modal-actions">
+          <button type="button" id="btnLineSendChat" class="btn-line-primary">
+            <i class="fa-brands fa-line" style="font-size: 1.2rem;"></i> ส่งสรุปใบแจ้งซ่อมเข้าแชท LINE
+          </button>
+          <div class="line-modal-actions-row">
+            <button type="button" id="btnLineShare" class="btn-line-outline">
+              <i class="fa-solid fa-share-nodes"></i> แชร์ไปยัง LINE
+            </button>
+            <button type="button" id="btnLineContactOa" class="btn-line-outline">
+              <i class="fa-solid fa-headset"></i> ติดต่อ LINE OA
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal Action Buttons -->
+        <div class="modal-actions">
+          <button type="button" id="btnModalAcknowledge" class="btn-modal-primary">
+            <i class="fa-solid fa-check"></i> ตกลง / เรียบร้อย
+          </button>
+          <button type="button" id="btnModalPrint" class="btn-modal-outline">
+            <i class="fa-solid fa-print"></i> พิมพ์ / บันทึกใบคำขอ
+          </button>
+          <button type="button" id="btnLineCloseLiff" class="btn-modal-outline text-danger" style="display: none;">
+            <i class="fa-solid fa-xmark"></i> ปิดหน้าต่าง LINE
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Detail View & Status Update for Tickets -->
+  <div id="detailModal" class="modal-overlay" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-accent-bar bar-blue"></div>
+      
+      <button type="button" class="modal-close-btn" id="detailCloseBtn" aria-label="ปิด">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-body">
+        <div class="detail-header-flex">
+          <div>
+            <span class="detail-ticket-id" id="detailTicketId">#REQ-20260820-001</span>
+            <h3 class="modal-title" style="margin-top: 4px; text-align: left;">รายละเอียดใบแจ้งซ่อม</h3>
+          </div>
+          <div id="detailStatusBadge"></div>
+        </div>
+
+        <div class="detail-content-box" id="detailContentBody">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- LINE Actions from Detail View -->
+        <div class="line-modal-actions-row" style="margin-top: 14px;">
+          <button type="button" id="btnDetailLineShare" class="btn-line-outline">
+            <i class="fa-brands fa-line"></i> แชร์ข้อมูลเข้า LINE
+          </button>
+          <button type="button" id="btnDetailLineOa" class="btn-line-outline">
+            <i class="fa-solid fa-headset"></i> สอบถามสถานะทาง LINE OA
+          </button>
+        </div>
+
+        <!-- Customer Status Timeline Tracker (Visible for normal users) -->
+        <div id="customerStatusTracker" class="customer-status-tracker">
+          <div class="tracker-title"><i class="fa-solid fa-timeline"></i> ติดตามสถานะงานซ่อม:</div>
+          <div class="timeline-steps">
+            <div class="timeline-step" id="step1">
+              <div class="step-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+              <div class="step-text">
+                <span class="step-name">1. รับแจ้งเรื่อง</span>
+                <span class="step-desc">บันทึกข้อมูลแล้ว</span>
+              </div>
+            </div>
+            <div class="timeline-connector" id="connector1"></div>
+            <div class="timeline-step" id="step2">
+              <div class="step-icon"><i class="fa-solid fa-phone-volume"></i></div>
+              <div class="step-text">
+                <span class="step-name">2. ติดต่อ & นัดหมาย</span>
+                <span class="step-desc">ยืนยันวัน-เวลานัด</span>
+              </div>
+            </div>
+            <div class="timeline-connector" id="connector2"></div>
+            <div class="timeline-step" id="step3">
+              <div class="step-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="step-text">
+                <span class="step-name">3. เสร็จสิ้น</span>
+                <span class="step-desc">ดำเนินการเรียบร้อย</span>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-lock-notice">
+            <i class="fa-solid fa-lock"></i> <span>ข้อมูลใบแจ้งซ่อมถูกบันทึกแล้ว ไม่สามารถแก้ไขได้ หากต้องการเปลี่ยนแปลง กรุณาติดต่อทาง LINE OA หรือโทร 02-123-4567</span>
+          </div>
+        </div>
+
+        <!-- Status modifier for staff only (Visible ONLY in Staff Mode) -->
+        <div class="status-modifier-section" id="detailStatusModifierSection" style="display: none;">
+          <label class="modifier-label"><i class="fa-solid fa-user-shield"></i> จัดการสถานะงาน (เฉพาะทีมช่าง / แอดมิน):</label>
+          <div class="status-buttons-row">
+            <button type="button" class="btn-status-change" data-newstatus="รอติดต่อกลับ"><i class="fa-solid fa-hourglass-half"></i> รอติดต่อกลับ</button>
+            <button type="button" class="btn-status-change" data-newstatus="นัดหมายแล้ว"><i class="fa-solid fa-calendar-check"></i> นัดหมายแล้ว</button>
+            <button type="button" class="btn-status-change" data-newstatus="เสร็จสิ้น"><i class="fa-solid fa-circle-check"></i> เสร็จสิ้น</button>
+          </div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 20px;">
+          <button type="button" id="btnDetailClose" class="btn-modal-primary">ปิดหน้าต่าง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: LINE Integration Settings -->
+  <div id="lineSettingsModal" class="modal-overlay" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-accent-bar" style="background: linear-gradient(90deg, #06C755, #00B900);"></div>
+      
+      <button type="button" class="modal-close-btn" id="lineSettingsCloseBtn" aria-label="ปิด">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-body">
+        <div class="detail-header-flex">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <i class="fa-brands fa-line" style="font-size: 2.2rem; color: #06C755;"></i>
+            <div>
+              <h3 class="modal-title" style="margin: 0; text-align: left;">ตั้งค่าการเชื่อมต่อ LINE</h3>
+              <p style="font-size: 0.85rem; color: var(--slate-500); margin: 2px 0 0 0;">กำหนดค่า LINE LIFF และการแจ้งเตือนแอดมิน</p>
+            </div>
+          </div>
+        </div>
+
+        <form id="lineConfigForm" style="margin-top: 18px;">
+          <div class="settings-field">
+            <label for="cfgLiffId"><i class="fa-solid fa-key"></i> LINE LIFF ID (สำหรับเปิดใน LINE):</label>
+            <input type="text" id="cfgLiffId" class="form-control" placeholder="เช่น 200xxxxxxx-xxxxxxx">
+            <p class="settings-help">นำ LIFF ID ได้จาก <a href="https://developers.line.biz/" target="_blank" rel="noopener">LINE Developers Console</a></p>
+          </div>
+
+          <div class="settings-field">
+            <label for="cfgLineOa"><i class="fa-solid fa-at"></i> LINE Official Account ID / Link:</label>
+            <input type="text" id="cfgLineOa" class="form-control" placeholder="เช่น @preemgroup หรือ https://line.me/R/ti/p/@...">
+            <p class="settings-help">ลิงก์หรือไอดี LINE OA เพื่อให้ลูกค้ากดคุยสอบถามกับแอดมินได้โดยตรง</p>
+          </div>
+
+          <div class="settings-field">
+            <label for="cfgWebhookUrl"><i class="fa-solid fa-bell"></i> Webhook แจ้งเตือนเข้า LINE แอดมิน (URL):</label>
+            <input type="url" id="cfgWebhookUrl" class="form-control" placeholder="เช่น Google Apps Script Webhook URL">
+            <p class="settings-help">ส่งข้อมูลแจ้งซ่อมเข้ากลุ่มช่าง/แอดมินอัตโนมัติทันทีที่ลูกค้ากดส่งฟอร์ม</p>
+          </div>
+
+          <div class="line-guide-card">
+            <strong><i class="fa-solid fa-lightbulb"></i> วิธีนำไปใช้งานบน LINE:</strong>
+            <ol>
+              <li>สร้าง LIFF App ใน LINE Developers แล้วใส่ Endpoint URL ของเว็บนี้</li>
+              <li>นำลิงก์ <code>https://liff.line.me/YOUR-LIFF-ID</code> ไปใส่ใน <strong>Rich Menu</strong> ของ LINE Official Account</li>
+              <li>เมื่อลูกค้าเปิดผ่าน LINE จะดึงชื่อให้อัตโนมัติและส่งข้อความสรุปเข้าแชทได้ทันที</li>
+            </ol>
+          </div>
+
+          <div class="modal-actions" style="margin-top: 20px;">
+            <button type="submit" class="btn-modal-primary" style="background: var(--line-green);">
+              <i class="fa-solid fa-floppy-disk"></i> บันทึกการตั้งค่า
+            </button>
+            <button type="button" id="btnLineSettingsCancel" class="btn-modal-outline">
+              ยกเลิก
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Staff PIN Login -->
+  <div id="staffPinModal" class="modal-overlay" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-card" style="max-width: 400px;">
+      <div class="modal-accent-bar bar-blue"></div>
+      
+      <button type="button" class="modal-close-btn" id="staffPinCloseBtn" aria-label="ปิด">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-body" style="text-align: center;">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--primary-50); color: var(--primary-600); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 12px;">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+
+        <h3 class="modal-title" style="margin-bottom: 6px;">เข้าสู่ระบบทีมช่าง / แอดมิน</h3>
+        <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: 18px;">
+          กรุณากรอกรหัส PIN เพื่อดูและจัดการรายการแจ้งซ่อมทั้งหมด
+        </p>
+
+        <form id="staffPinForm">
+          <div class="input-wrapper" style="max-width: 200px; margin: 0 auto 8px;">
+            <input 
+              type="password" 
+              id="staffPinInput" 
+              class="form-control" 
+              placeholder="••••" 
+              maxlength="8" 
+              autocomplete="current-password"
+              style="text-align: center; font-size: 1.4rem; letter-spacing: 6px; font-weight: 700;"
+              required
+            >
+          </div>
+          <p class="error-message" id="staffPinError" style="display: none; justify-content: center; margin-bottom: 12px;">
+            <i class="fa-solid fa-circle-exclamation"></i> รหัส PIN ไม่ถูกต้อง
+          </p>
+          <p style="font-size: 0.78rem; color: var(--slate-400); margin-bottom: 18px;">
+            <i class="fa-solid fa-circle-info"></i> รหัส PIN เริ่มต้น: <code>1234</code>
+          </p>
+
+          <div class="modal-actions" style="flex-direction: column; gap: 8px;">
+            <button type="submit" class="btn-modal-primary" style="width: 100%;">
+              <i class="fa-solid fa-lock-open"></i> ยืนยันรหัส PIN
+            </button>
+            <button type="button" id="btnStaffPinCancel" class="btn-modal-outline" style="width: 100%;">
+              ยกเลิก
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" aria-label="เมนูหลักบนมือถือ">
+    <a href="#request-form-section" class="mobile-nav-item active" id="mNavForm">
+      <i class="fa-solid fa-file-circle-plus"></i>
+      <span>แจ้งซ่อม</span>
+    </a>
+    <a href="#history-section" class="mobile-nav-item" id="mNavHistory">
+      <div class="m-nav-icon-wrap">
+        <i class="fa-solid fa-list-check"></i>
+        <span class="m-nav-badge" id="mTicketCountBadge">0</span>
+      </div>
+      <span>ประวัติ</span>
+    </a>
+    <button type="button" class="mobile-nav-item" id="mNavLineOa">
+      <i class="fa-brands fa-line" style="color: #06C755;"></i>
+      <span>คุยไลน์</span>
+    </button>
+    <button type="button" class="mobile-nav-item" id="mNavSettings">
+      <i class="fa-solid fa-gear"></i>
+      <span>ตั้งค่า</span>
+    </button>
+  </nav>
+
+  <!-- LINE Integration Service -->
+  <script src="line-config.js"></script>
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
